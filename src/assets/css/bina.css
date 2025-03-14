@@ -3563,10 +3563,10 @@ left: 0;
 }
 
 .input-group .textColored .text-black {
-    color: #ffcc00 !important;
+   
 }
 [data-theme-version=light][data-primary=color_2] .input-group .textColored .text-black {
-    color: #d8ad00 !important;
+
 }
 [data-theme-version=dark][data-primary=color_2] .textColored:hover ,
 [data-theme-version=light][data-primary=color_2] .textColored:hover {
@@ -4625,4 +4625,14 @@ left: 0;
 
   .brand-logo {
     display: none !important;
+}
+
+
+.disabled-dropdown {
+    pointer-events: none;
+  }
+
+
+  .future_main_section {
+    min-height: 600px;
 }

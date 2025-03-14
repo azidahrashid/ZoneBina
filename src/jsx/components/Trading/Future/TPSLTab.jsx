@@ -41,7 +41,7 @@ const TPSLTab = () => {
                                     onFocus={() => handleInputFocus(`${inputId}-tp`)}
                                     onBlur={handleInputBlur}
                                 />
-                                <span className="btn-cur left-radius input-group-text fw-light  border-start-0 textColored">
+                                <span className="btn-cur left-radius input-group-text fw-light  border-start-0 ">
                                     <DropDownUI
                                         options={["시장가", "현재가"]}
                                         placeholder="시장가"
@@ -65,7 +65,7 @@ const TPSLTab = () => {
                                     onFocus={() => handleInputFocus(`${inputId}-sl`)}
                                     onBlur={handleInputBlur}
                                 />
-                                <span className="btn-cur left-radius input-group-text fw-light  border-start-0 textColored">
+                                <span className="btn-cur left-radius input-group-text fw-light  border-start-0 ">
                                     <DropDownUI
                                         options={["시장가", "Limit"]}
                                         placeholder="시장가"
