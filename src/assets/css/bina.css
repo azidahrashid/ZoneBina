@@ -546,7 +546,8 @@ border-color:var(--color-PrimaryYellow)
 .text-BuyHover {
     color: var(--color-BuyHover)
 }
-.text-closePosition {color:var(--color-textBrand)}
+[data-theme-version=dark][data-primary=color_2] .text-closePosition {color:#fff}
+[data-theme-version=light][data-primary=color_2] .text-closePosition {colo:r#000}
 .text-DisableText {
     color: var(--color-DisableText)
 }
@@ -4634,5 +4635,5 @@ left: 0;
 
 
   .future_main_section {
-    min-height: 600px;
+    min-height: 500px;
 }
