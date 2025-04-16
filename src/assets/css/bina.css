@@ -4473,7 +4473,7 @@ left: 0;
       width: 70%;
     }
   }
-  @media only screen and (max-width: 980px) {
+  @media only screen and (max-width: 800px) {
     [data-header-position="fixed"][data-layout="horizontal"][data-headerbg="color_2"]
       .header {
       padding-top: 5rem;
