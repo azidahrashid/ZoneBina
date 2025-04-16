@@ -4637,3 +4637,13 @@ left: 0;
   .future_main_section {
     min-height: 500px;
 }
+
+.content-body .container-fluid {
+    height: 100vh;
+}
+.col-xxl-2.future_trade_section.fixed-tradebar.closed {
+    height: 20vh;
+}
+.row.future_chart_section {
+    height: 30vh;
+}
