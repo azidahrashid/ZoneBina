@@ -19,6 +19,7 @@ import Home from "./components/Trading/Future";
 
 /// Pages
 import LockScreen from "./pages/LockScreen";
+import SideFonts from "./pages/SideFonts";
 import Error400 from "./pages/Error400";
 import Error403 from "./pages/Error403";
 import Error404 from "./pages/Error404";
@@ -41,6 +42,7 @@ const Markup = () => {
     <>
         <Routes>
             <Route path='page-lock-screen' element= {<LockScreen />} />
+            <Route path='page-sidefonts' element= {<SideFonts />} />
             <Route path='page-error-400' element={<Error400/>} />
             <Route path='page-error-403' element={<Error403/>} />
             <Route path='page-error-404' element={<Error404/>} />
