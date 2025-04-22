@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ZoneBina/static/css/main.b3b7c62f.css",
-    "main.js": "/ZoneBina/static/js/main.97cdaaf2.js",
+    "main.css": "/ZoneBina/static/css/main.eda4b679.css",
+    "main.js": "/ZoneBina/static/js/main.c4c330be.js",
     "static/js/412.86eccdd9.chunk.js": "/ZoneBina/static/js/412.86eccdd9.chunk.js",
     "static/js/341.9c26cfd0.chunk.js": "/ZoneBina/static/js/341.9c26cfd0.chunk.js",
     "static/js/350.7c0567eb.chunk.js": "/ZoneBina/static/js/350.7c0567eb.chunk.js",
@@ -18,6 +18,7 @@
     "static/media/themify9f24.svg?-fvbane": "/ZoneBina/static/media/themify9f24.c4292f34297f1004471a.svg",
     "static/media/la-solid-900.eot": "/ZoneBina/static/media/la-solid-900.4184d740eae2fb727bfe.eot",
     "static/media/la-solid-900.ttf": "/ZoneBina/static/media/la-solid-900.279f38601f1d1655255f.ttf",
+    "static/media/trade-icon.svg?fkxxjb": "/ZoneBina/static/media/trade-icon.12c3ac6c390f498eda9f.svg",
     "static/media/Simple-Line-Icons4c82.svg?-i3a2kk": "/ZoneBina/static/media/Simple-Line-Icons4c82.e44ce50cc5d614fac12e.svg",
     "static/media/fa-brands-400.ttf": "/ZoneBina/static/media/fa-brands-400.0a1b701f5563c2288281.ttf",
     "static/media/materialdesignicons-webfont.woff?v=2.4.85": "/ZoneBina/static/media/materialdesignicons-webfont.20ea693c7cf2fa077928.woff",
@@ -46,6 +47,9 @@
     "static/media/themify.ttf": "/ZoneBina/static/media/themify.eda8b94308c6f538f04a.ttf",
     "static/media/Flaticon_1.svg": "/ZoneBina/static/media/Flaticon_1.60e7069d382331c47f85.svg",
     "static/media/fa-regular-400.ttf": "/ZoneBina/static/media/fa-regular-400.15d98c18221c8bcb2334.ttf",
+    "static/media/trade-icon.eot?fkxxjb": "/ZoneBina/static/media/trade-icon.0563a6083acc5b6d9ee8.eot",
+    "static/media/trade-icon.woff?fkxxjb": "/ZoneBina/static/media/trade-icon.bf0fab8da590cd94f7fd.woff",
+    "static/media/trade-icon.ttf?fkxxjb": "/ZoneBina/static/media/trade-icon.58557e6d5ddfe0e0857f.ttf",
     "static/media/themify.woff": "/ZoneBina/static/media/themify.29b39089170885ae2967.woff",
     "static/media/Simple-Line-Icons4c82.eot?-i3a2kk": "/ZoneBina/static/media/Simple-Line-Icons4c82.cb4840b543cf18677ced.eot",
     "static/media/Simple-Line-Iconsd41d.eot": "/ZoneBina/static/media/Simple-Line-Iconsd41d.cb4840b543cf18677ced.eot",
@@ -74,15 +78,15 @@
     "static/media/lg.ttf?io9a6k": "/ZoneBina/static/media/lg.747d038541bfc6bb8ea9.ttf",
     "static/media/lg.woff2?io9a6k": "/ZoneBina/static/media/lg.64b800aa30714fd916dc.woff2",
     "index.html": "/ZoneBina/index.html",
-    "main.b3b7c62f.css.map": "/ZoneBina/static/css/main.b3b7c62f.css.map",
-    "main.97cdaaf2.js.map": "/ZoneBina/static/js/main.97cdaaf2.js.map",
+    "main.eda4b679.css.map": "/ZoneBina/static/css/main.eda4b679.css.map",
+    "main.c4c330be.js.map": "/ZoneBina/static/js/main.c4c330be.js.map",
     "412.86eccdd9.chunk.js.map": "/ZoneBina/static/js/412.86eccdd9.chunk.js.map",
     "341.9c26cfd0.chunk.js.map": "/ZoneBina/static/js/341.9c26cfd0.chunk.js.map",
     "350.7c0567eb.chunk.js.map": "/ZoneBina/static/js/350.7c0567eb.chunk.js.map",
     "453.6757b169.chunk.js.map": "/ZoneBina/static/js/453.6757b169.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b3b7c62f.css",
-    "static/js/main.97cdaaf2.js"
+    "static/css/main.eda4b679.css",
+    "static/js/main.c4c330be.js"
   ]
 }
