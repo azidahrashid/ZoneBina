@@ -20,7 +20,7 @@ const ChartTab = ({ onTimeframeChange }) => {
   }, [selectedTimeframe, onTimeframeChange]);
 
 
-  <ChartTab onTimeframeChange={(val) => console.log("Initial load timeframe:", val)} />
+
 
   return (
     <>
