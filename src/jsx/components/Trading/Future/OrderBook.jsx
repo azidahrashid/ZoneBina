@@ -81,12 +81,12 @@ function OrderBook() {
             </svg>
           </button>
         </div>
-        {/* <div className="orderbook-tickSize" >
+        { <div className="orderbook-tickSize" >
           <div className="bn-tooltips-wrap" >
                   <div className="bn-tooltips-ele" >
-                      <div className="tick-content" > */}
+                      <div className="tick-content" > 
 
-                        {/* <Dropdown>
+                        {/* { <Dropdown>
                             <Dropdown.Toggle className="btn btn-primary btn-outline-primary left-radius p-0" currentValue="10" onValueChange={handleDropdownChange} >
                               {selectedValue}
                             </Dropdown.Toggle>
@@ -102,8 +102,8 @@ function OrderBook() {
                                 active={selectedValue === "10"} // Highlights the selected item
                               >
                                 10
-                              </Dropdown.Item.Item>
-                              <Dropdown.Item.Item
+                              </Dropdown.Item>
+                              <Dropdown.Item
                                 onClick={() => handleSelect("50")}
                                 active={selectedValue === "50"} // Highlights the selected item
                               >
@@ -116,20 +116,20 @@ function OrderBook() {
                                 100
                               </Dropdown.Item>
                             </Dropdown.Menu>
-                          </Dropdown> */}
+                          </Dropdown> } */}
 
-                        {/* <DropDownUI
+                        { <DropDownUI
                           options={["0.1", "1", "10", "50" , "100"]}
                           placeholder="0.1" // Custom placeholder text
                           onValueChange={handleDropdownChange}
-                        />
+                        />}
                       </div>
                   </div>
                   <div className="bn-bubble bn-bubble__unset data-shadow data-font-14 bn-tooltips"  style={{transform: 'translate(0px, 0px)' , top:'100%', right: '0px'}}>
                       <div className="bn-bubble-content"  style={{marginTop: '4px'}}></div>
                   </div>
               </div>
-          </div> */}
+          </div> }
       </div>
      
 
