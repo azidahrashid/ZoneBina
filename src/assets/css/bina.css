@@ -531,11 +531,11 @@ border-color:var(--color-PrimaryYellow)
 .text-BtnBg {
     color: var(--color-BtnBg)
 }
-.timechart_wrap .leftarrow {
+.icondrop_menu .leftarrow {
     background: linear-gradient(to right, var(--color-BasicBg), var(--color-BasicBg), transparent);
     visibility: hidden;
 }
-.timechart_wrap .rightarrow  {
+.icondrop_menu .rightarrow  {
     background: linear-gradient(to right, transparent, var(--color-BasicBg), var(--color-BasicBg));
     visibility: hidden;
 }
@@ -4650,17 +4650,17 @@ left: 0;
     height: 30vh;
 }
 
-.timechart_wrap .dropdown-menu .dropdown-item .d-flextrade_icon {
+.icondrop_menu .dropdown-menu .dropdown-item .d-flextrade_icon {
     display: flex;
     gap: 12px;
     align-items:center;
   
 }
-.timechart_wrap .dropdown-menu .dropdown-item {
+.icondrop_menu .dropdown-menu .dropdown-item {
     padding: 0.5rem 0.5rem;
 }
 
-.timechart_wrap .dropdown-menu .dropdown-item .font-i:before {
+.icondrop_menu .dropdown-menu .dropdown-item .font-i:before {
     font-size: 1.5rem;
 }
 
@@ -4673,31 +4673,38 @@ left: 0;
     margin-right: 5px;
 }
 
-
-.timechart_wrap .dropdown-menu .dropdown-item .star_icon:before {
+.icondrop_menu .dropdown-menu .dropdown-item .star_icon{
+    opacity:0;
+}
+.icondrop_menu .dropdown-menu .dropdown-item:hover .star_icon {
+    opacity:1;
+}
+.icondrop_menu .dropdown-menu .dropdown-item .star_icon:before {
     font-size: 1.2rem;
+
 }
 
-[data-theme-version=light][data-primary=color_2] .timechart_wrap .dropdown-menu .dropdown-item:hover .star_icon {
+[data-theme-version=light][data-primary=color_2] .icondrop_menu .dropdown-menu .dropdown-item .star_icon:hover  {
     background-color:#dbdbdb;
-  
-}
-[data-theme-version=dark][data-primary=color_2] .timechart_wrap .dropdown-menu .dropdown-item:hover .star_icon {
-    background-color: var(--color-DisableBtn);
-  
 }
 
-[data-theme-version=light][data-primary=color_2] .timechart_wrap .dropdown-menu .dropdown-item:hover .star_icon:before  {
+[data-theme-version=dark][data-primary=color_2] .icondrop_menu .dropdown-menu .dropdown-item.star_icon:hover  {
+    background-color: var(--color-DisableBtn);
+}
+
+[data-theme-version=light][data-primary=color_2] .icondrop_menu .dropdown-menu .dropdown-item:hover .star_icon:before  {
       text-shadow:0 0 1px#000;
       color:white;
-}
-[data-theme-version=dark][data-primary=color_2] .timechart_wrap .dropdown-menu .dropdown-item:hover .star_icon:before  {
-    text-shadow:0 0 1px#ffffff;
-    color: var(--color-DisableBtn);
-   
+      content: "\e9bd";
 }
 
-.timechart_wrap .dropdown-menu .dropdown-item .star_icon {
+[data-theme-version=dark][data-primary=color_2] .icondrop_menu .dropdown-menu .dropdown-item:hover .star_icon:before  {
+    text-shadow:0 0 1px#ffffff;
+    color: var(--color-DisableBtn); 
+    content: "\e9bd";
+}
+
+.icondrop_menu .dropdown-menu .dropdown-item .star_icon {
     display: inline-flex;
     border-radius:4px;
     font-size: 0;
@@ -4711,4 +4718,14 @@ left: 0;
 
 .fixChart_SideMenu .font-i-side:before {
     font-size:23px
+}
+
+
+.fixChart_SideMenu .moreright-btn .dropdown-toggle::after {
+
+    opacity:0;
+
+}
+.fixChart_SideMenu .moreright-btn:hover .dropdown-toggle::after{
+    opacity:1;
 }

@@ -43,7 +43,7 @@ const ChartTab = ({ onTimeframeChange }) => {
               <div className="d-flex align-items-center gap-[--space-m]">
                 <div className="!ml-[0px]">
                   <div className="bn-flex h-[20px]">
-                    <div className="bn-flex justify-between gap-[8px] mx-4">
+                    <div className="bn-flex justify-content-center gap-[8px] mx-4 icondrop_menu">
 
 
                             <div className="timeframe_dropdown bn-flex justify-center align-items-center" style={{lineHeight: '1'}}>
@@ -66,11 +66,17 @@ const ChartTab = ({ onTimeframeChange }) => {
                               title=""
                               id="bg-nested-dropdown"
                               drop="down"
-                              className="moredown-btn"
+                              className="moredown-btn bn-flex justify-content-between"
                             >
                               
                               <Dropdown.Item eventKey="1"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_26 d-flextrade_icon">봉</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
                               <Dropdown.Item eventKey="2"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_27 d-flextrade_icon">캔들</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
+                              <Dropdown.Item eventKey="2"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_204 d-flextrade_icon">할로우캔들</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
+                              
+                              <div className='dropdown-divider'></div>
+
+                              <Dropdown.Item eventKey="2"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_192 d-flextrade_icon">캔들</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
+
                             </DropdownButton>
                     
 

@@ -3658,14 +3658,22 @@ textarea.form-control-lg {
   align-items: center;
 }
 
+.dropdown.moredown-btn .dropdown-toggle.btn  {
+  padding:5px 3px;
+}
+
+.dropend.moreright-btn .dropdown-toggle.btn {
+  padding:10px 3px;
+}
 
 
-[data-theme-version=light][data-primary=color_2] .dropdown .dropdown-toggle.btn:hover  {
+
+[data-theme-version=light][data-primary=color_2]  .dropdown-toggle.btn:hover  {
  background-color: #f2f2f2;
 
 }
 
-[data-theme-version=dark][data-primary=color_2] .dropdown .dropdown-toggle.btn:hover {
+[data-theme-version=dark][data-primary=color_2]  .dropdown-toggle.btn:hover {
   background-color: var(--color-DisableBtn)
 }
 
