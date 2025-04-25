@@ -4663,3 +4663,52 @@ left: 0;
 .timechart_wrap .dropdown-menu .dropdown-item .font-i:before {
     font-size: 1.5rem;
 }
+
+.fixChart_SideMenu {
+    display: inline-flex; 
+    height: calc(100% - 77px);
+    position: absolute;
+    z-index: 9;
+    border-radius: 0 5px 5px 0;
+    margin-right: 5px;
+}
+
+
+.timechart_wrap .dropdown-menu .dropdown-item .star_icon:before {
+    font-size: 1.2rem;
+}
+
+[data-theme-version=light][data-primary=color_2] .timechart_wrap .dropdown-menu .dropdown-item:hover .star_icon {
+    background-color:#dbdbdb;
+  
+}
+[data-theme-version=dark][data-primary=color_2] .timechart_wrap .dropdown-menu .dropdown-item:hover .star_icon {
+    background-color: var(--color-DisableBtn);
+  
+}
+
+[data-theme-version=light][data-primary=color_2] .timechart_wrap .dropdown-menu .dropdown-item:hover .star_icon:before  {
+      text-shadow:0 0 1px#000;
+      color:white;
+}
+[data-theme-version=dark][data-primary=color_2] .timechart_wrap .dropdown-menu .dropdown-item:hover .star_icon:before  {
+    text-shadow:0 0 1px#ffffff;
+    color: var(--color-DisableBtn);
+   
+}
+
+.timechart_wrap .dropdown-menu .dropdown-item .star_icon {
+    display: inline-flex;
+    border-radius:4px;
+    font-size: 0;
+    height: 22px;
+    align-items:center;
+    justify-content: center;
+    min-width: 22px;
+    width: 22px;
+    
+}
+
+.fixChart_SideMenu .font-i-side:before {
+    font-size:23px
+}
