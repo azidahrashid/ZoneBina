@@ -4181,7 +4181,7 @@ left: 0;
     .future_main_section,
     .future_orderbook_section,
     .future_trade_section {
-      max-height: unset;
+   
       overflow: unset;
     }
   }
@@ -4634,8 +4634,10 @@ left: 0;
   }
 
 
-  .future_main_section {
-    min-height: 500px;
+.future_main_section,
+.future_orderbook_section,
+.future_trade_section {
+    min-height: calc(100vh - 5.125rem - 18vh);
 }
 
 .content-body .container-fluid {
@@ -4646,4 +4648,18 @@ left: 0;
 }
 .row.future_chart_section {
     height: 30vh;
+}
+
+.timechart_wrap .dropdown-menu .dropdown-item .d-flextrade_icon {
+    display: flex;
+    gap: 12px;
+    align-items:center;
+  
+}
+.timechart_wrap .dropdown-menu .dropdown-item {
+    padding: 0.5rem 0.5rem;
+}
+
+.timechart_wrap .dropdown-menu .dropdown-item .font-i:before {
+    font-size: 1.5rem;
 }

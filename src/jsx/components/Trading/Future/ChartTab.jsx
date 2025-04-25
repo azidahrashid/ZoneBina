@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import DropDownUI from "../../bootstrap/DropDownUi";
 import { Clock } from 'lucide-react'; 
+import {
+  ButtonGroup,
+  Dropdown,
+  DropdownButton,
+} from "react-bootstrap";
+
 
 const TIMEFRAME_OPTIONS = ["15m", "1H", "4H", "1D", "1W"];
 
@@ -50,6 +56,29 @@ const ChartTab = ({ onTimeframeChange }) => {
                             </div>
 
 
+                            <div className='dropdown-divider-side'></div>
+
+
+
+                            <DropdownButton
+                              align={{lg: 'start'}}
+                              as={ButtonGroup}
+                              title=""
+                              id="bg-nested-dropdown"
+                              drop="down"
+                              className="moredown-btn"
+                            >
+                              
+                              <Dropdown.Item eventKey="1"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_26 d-flextrade_icon">봉</span><span className="font-i trade_icon tradeicon-ticon_189"></span></div></Dropdown.Item>
+                              <Dropdown.Item eventKey="2"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_27 d-flextrade_icon">캔들</span><span className="font-i trade_icon tradeicon-ticon_189"></span></div></Dropdown.Item>
+                            </DropdownButton>
+                    
+
+
+                          
+
+                            <div className='dropdown-divider-side'></div>
+     
                     </div>
                   </div>
                 </div>

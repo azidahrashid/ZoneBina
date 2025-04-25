@@ -6,6 +6,7 @@ import {BadgeDollarSign, X} from 'lucide-react';
 
 import OrderTab from './Future/OrderTab';
 import ChartTab from './Future/ChartTab';
+import ChartSideMenu from './Future/Chart';
 import LimitTab from './Future/LimitTab';
 import MarketTab from './Future/MarketTab';
 import TPSLTab from './Future/TPSLTab';
@@ -59,6 +60,7 @@ const Future = () =>{
                                         <Tab.Content >
                                             <Tab.Pane eventKey="BCoinChart">
                                                 <ChartTab />
+                                                <ChartSideMenu/>
                                             </Tab.Pane>  
                                             {/* <Tab.Pane eventKey="Info">
                                                 <InfoTab />
