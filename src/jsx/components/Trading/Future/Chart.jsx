@@ -28,7 +28,7 @@ const ChartSideMenu = () => {
                             <DropdownButton
                               align={{lg: 'end'}}
                               as={ButtonGroup}
-                              title={<span className="font-i-side trade_icon tradeicon-ticon_173" />}
+                              title={<span className="font-i-side trade_icon tradeicon-ticon_205" />}
                               id="bg-nested-dropdown"
                               drop="end"
                               className="moreright-btn bn-flex justify-content-between"
