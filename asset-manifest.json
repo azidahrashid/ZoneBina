@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/ZoneBina/static/css/main.eda4b679.css",
-    "main.js": "/ZoneBina/static/js/main.997fc278.js",
+    "main.css": "/ZoneBina/static/css/main.58e2cff9.css",
+    "main.js": "/ZoneBina/static/js/main.454eb6ee.js",
     "static/js/412.86eccdd9.chunk.js": "/ZoneBina/static/js/412.86eccdd9.chunk.js",
     "static/js/341.9c26cfd0.chunk.js": "/ZoneBina/static/js/341.9c26cfd0.chunk.js",
-    "static/js/350.93e94ea4.chunk.js": "/ZoneBina/static/js/350.93e94ea4.chunk.js",
+    "static/js/350.b21f2bd4.chunk.js": "/ZoneBina/static/js/350.b21f2bd4.chunk.js",
     "static/js/453.6757b169.chunk.js": "/ZoneBina/static/js/453.6757b169.chunk.js",
     "static/media/materialdesignicons-webfont.svg?v=2.4.85": "/ZoneBina/static/media/materialdesignicons-webfont.6285372902a5d4634762.svg",
     "static/media/la-brands-400.svg": "/ZoneBina/static/media/la-brands-400.928495fae14841a0d610.svg",
@@ -78,15 +78,15 @@
     "static/media/lg.ttf?io9a6k": "/ZoneBina/static/media/lg.747d038541bfc6bb8ea9.ttf",
     "static/media/lg.woff2?io9a6k": "/ZoneBina/static/media/lg.64b800aa30714fd916dc.woff2",
     "index.html": "/ZoneBina/index.html",
-    "main.eda4b679.css.map": "/ZoneBina/static/css/main.eda4b679.css.map",
-    "main.997fc278.js.map": "/ZoneBina/static/js/main.997fc278.js.map",
+    "main.58e2cff9.css.map": "/ZoneBina/static/css/main.58e2cff9.css.map",
+    "main.454eb6ee.js.map": "/ZoneBina/static/js/main.454eb6ee.js.map",
     "412.86eccdd9.chunk.js.map": "/ZoneBina/static/js/412.86eccdd9.chunk.js.map",
     "341.9c26cfd0.chunk.js.map": "/ZoneBina/static/js/341.9c26cfd0.chunk.js.map",
-    "350.93e94ea4.chunk.js.map": "/ZoneBina/static/js/350.93e94ea4.chunk.js.map",
+    "350.b21f2bd4.chunk.js.map": "/ZoneBina/static/js/350.b21f2bd4.chunk.js.map",
     "453.6757b169.chunk.js.map": "/ZoneBina/static/js/453.6757b169.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eda4b679.css",
-    "static/js/main.997fc278.js"
+    "static/css/main.58e2cff9.css",
+    "static/js/main.454eb6ee.js"
   ]
 }
