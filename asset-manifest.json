@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ZoneBina/static/css/main.975d1647.css",
-    "main.js": "/ZoneBina/static/js/main.c25939cb.js",
+    "main.js": "/ZoneBina/static/js/main.e024f820.js",
     "static/js/412.86eccdd9.chunk.js": "/ZoneBina/static/js/412.86eccdd9.chunk.js",
     "static/js/341.9c26cfd0.chunk.js": "/ZoneBina/static/js/341.9c26cfd0.chunk.js",
     "static/js/350.b21f2bd4.chunk.js": "/ZoneBina/static/js/350.b21f2bd4.chunk.js",
@@ -79,7 +79,7 @@
     "static/media/lg.woff2?io9a6k": "/ZoneBina/static/media/lg.64b800aa30714fd916dc.woff2",
     "index.html": "/ZoneBina/index.html",
     "main.975d1647.css.map": "/ZoneBina/static/css/main.975d1647.css.map",
-    "main.c25939cb.js.map": "/ZoneBina/static/js/main.c25939cb.js.map",
+    "main.e024f820.js.map": "/ZoneBina/static/js/main.e024f820.js.map",
     "412.86eccdd9.chunk.js.map": "/ZoneBina/static/js/412.86eccdd9.chunk.js.map",
     "341.9c26cfd0.chunk.js.map": "/ZoneBina/static/js/341.9c26cfd0.chunk.js.map",
     "350.b21f2bd4.chunk.js.map": "/ZoneBina/static/js/350.b21f2bd4.chunk.js.map",
@@ -87,6 +87,6 @@
   },
   "entrypoints": [
     "static/css/main.975d1647.css",
-    "static/js/main.c25939cb.js"
+    "static/js/main.e024f820.js"
   ]
 }
