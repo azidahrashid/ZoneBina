@@ -25,11 +25,63 @@ const ChartTab = ({ onTimeframeChange }) => {
     }
   }, [selectedTimeframe, onTimeframeChange]);
 
+  const TOPBAR_MENU_ITEMS = [
+    { id: 1, iconClass: "tradeicon-ticon_26", label: "봉" },
+    { id: 2, iconClass: "tradeicon-ticon_27", label: "캔들" },
+    { id: 3, iconClass: "tradeicon-ticon_204", label: "할로우캔들" },
+    { id: 4, iconClass: "tradeicon-ticon_192", label: "캔들" },
+    { id: 5, iconClass: "tradeicon-ticon_193", label: "마커가 있는 라인" },
+    { id: 6, iconClass: "tradeicon-ticon_194", label: "스텝 라인" },
+    { id: 7, iconClass: "tradeicon-ticon_204", label: "영역" },
+    { id: 8, iconClass: "tradeicon-ticon_195", label: "HLC 영역" },
+    { id: 9, iconClass: "tradeicon-ticon_196", label: "베이스라인" },
+    { id: 10, iconClass: "tradeicon-ticon_197", label: "컬럼" },
+    { id: 11, iconClass: "tradeicon-ticon_198", label: "하이-로우" },
+    { id: 12, iconClass: "tradeicon-ticon_199", label: "헤이킨 아시" },
+    { id: 13, iconClass: "tradeicon-ticon_200", label: "렌코" },
+    { id: 14, iconClass: "tradeicon-ticon_201", label: "라인브레이크" },
+    { id: 15, iconClass: "tradeicon-ticon_202", label: "카기" },
+    { id: 16, iconClass: "tradeicon-ticon_203", label: "포인트앤피겨" },
+    { id: 17, iconClass: "tradeicon-ticon_2", label: "레인지" },
+  ];
+  
+
+  const [favourites, setFavourites] = useState([]);
+
+  const toggleFavourite = (item) => {
+    if (favourites.some(fav => fav.id === item.id)) {
+      setFavourites(prev => prev.filter(fav => fav.id !== item.id));
+
+    } else {
+      setFavourites(prev => [...prev, item]);
+
+    }
+  };
+
+  const handleFavouriteClick = (item) => {
+    // You can do anything here, like changing chart type, etc.
+  };
+
+
+  const [selectedChartType, setSelectedChartType] = useState(null);
+
+  const handleChartTypeSelect = (item) => {
+    setSelectedChartType(item.id);
+    handleFavouriteClick(item); // if you want to still trigger favourite click or custom logic
+  };
+  
+  
 
 
 
   return (
+
+
+    
     <>
+
+  
+
       <div className="border-b-[1px] border-x-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] py-2">
         <div className="d-grid grid-cols-[auto_min-content] align-items-center h-full timechart_wrap">
           <div className="d-flex align-items-center relative mr-[24px]">
@@ -46,11 +98,12 @@ const ChartTab = ({ onTimeframeChange }) => {
                     <div className="bn-flex justify-content-center gap-[8px] mx-4 icondrop_menu">
 
 
-                            <div className="timeframe_dropdown bn-flex justify-center align-items-center" style={{lineHeight: '1'}}>
+                          
+                          <div className="timeframe_dropdown bn-flex justify-center align-items-center" style={{lineHeight: '1'}}>
                             <Clock className="w-3 h-3 text-IconNormal" />
                             <DropDownUI
                                 options={TIMEFRAME_OPTIONS}
-                                placeholder="Time" // title
+                                placeholder="Time" 
                                 onValueChange={handleTimeframeChange}
                             />
                             </div>
@@ -59,8 +112,23 @@ const ChartTab = ({ onTimeframeChange }) => {
                             <div className='dropdown-divider-side'></div>
 
 
+                              <div className="favourites-bar d-flex gap-2">
+                                {favourites.map((item) => (
+                                  <span
+                                    key={item.id}
+                                    className={`font-i trade_icon ${item.iconClass} d-flex trade_icon cursor-pointer`}
+                                    onClick={() => handleFavouriteClick(item)}
+                                  >
+                                  
+                                  </span>
+                                ))}
+                              </div>
 
-                            <DropdownButton
+                                  
+
+
+
+                              <DropdownButton
                               align={{lg: 'start'}}
                               as={ButtonGroup}
                               title=""
@@ -68,39 +136,29 @@ const ChartTab = ({ onTimeframeChange }) => {
                               drop="down"
                               className="moredown-btn bn-flex justify-content-between"
                             >
-                              
-                              <Dropdown.Item eventKey="1"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_26 d-flextrade_icon">봉</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="2"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_27 d-flextrade_icon">캔들</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="3"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_204 d-flextrade_icon">할로우캔들</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              
-                              <div className='dropdown-divider'></div>
-
-                              <Dropdown.Item eventKey="4"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_192 d-flextrade_icon">캔들</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="5"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_193 d-flextrade_icon">마커가 있는 라인</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="6"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_194 d-flextrade_icon">스텝 라인</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-
-                              <div className='dropdown-divider'></div>                              
-
-                              <Dropdown.Item eventKey="7"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_204 d-flextrade_icon">영역</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="8"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_195 d-flextrade_icon">HLC 영역</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="9"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_196 d-flextrade_icon">베이스라인</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              
-                              <div className='dropdown-divider'></div>
-
-                              <Dropdown.Item eventKey="10"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_197 d-flextrade_icon">컬럼</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="11"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_198 d-flextrade_icon">하이-로우</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              
-                              <div className='dropdown-divider'></div>
-
-                              <Dropdown.Item eventKey="12"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_199 d-flextrade_icon">헤이킨 아시</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="13"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_200 d-flextrade_icon">렌코</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="14"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_201 d-flextrade_icon">라인브레이크</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="15"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_202 d-flextrade_icon">카기</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="16"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_203 d-flextrade_icon">포인트앤피겨</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="17"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_2 d-flextrade_icon">레인지</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-
-
+                              {TOPBAR_MENU_ITEMS.map((item) => (
+                                <Dropdown.Item
+                                  key={item.id}
+                                  eventKey={item.id}
+                                  className={selectedChartType === item.id ? 'selectedMenu' : ''}
+                                  onClick={() => handleChartTypeSelect(item)}
+                                >
+                                  <div className="bn-flex justify-content-between align-items-center">
+                                    <span className={`font-i trade_icon ${item.iconClass} d-flextrade_icon`}>
+                                      {item.label}
+                                    </span>
+                                    <span
+                                      className={`font-i trade_icon ${favourites.some(fav => fav.id === item.id) ? "tradeicon-ticon_filled_star" : "tradeicon-ticon_0"} star_icon`}
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        toggleFavourite(item);
+                                      }}
+                                    ></span>
+                                  </div>
+                                </Dropdown.Item>
+                              ))}
                             </DropdownButton>
+
                     
 
 

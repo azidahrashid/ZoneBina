@@ -4729,3 +4729,8 @@ left: 0;
 .fixChart_SideMenu .moreright-btn:hover .dropdown-toggle::after{
     opacity:1;
 }
+
+
+.favourites-bar .font-i {
+    font-size: 1.5rem;
+}
