@@ -100,18 +100,22 @@ const SIDEBAR_MENU5_ITEMS = [
 
 
 const SIDEBAR_MENU6_ITEMS = [
-  { id: 1, iconClass: "tradeicon-ticon_57", label: "붓" },
-  { id: 2, iconClass: "tradeicon-ticon_59", label: "하이라이터" },
-  { id: 3, iconClass: "tradeicon-ticon_60", label: "예측" },
-  { id: 4, iconClass: "tradeicon-ticon_61", label: "봉패턴" },
-  { id: 5, iconClass: "tradeicon-ticon_62", label: "고스트피드" },
-  { id: 6, iconClass: "tradeicon-ticon_63", label: "프로젝션" },
-  { id: 7, iconClass: "tradeicon-ticon_64", label: "앵커드 VWAP" },
-  { id: 8, iconClass: "tradeicon-ticon_65", label: "픽스트 레인지 볼륨 프로화일" },
-  { id: 9, iconClass: "tradeicon-ticon_66", label: "고정 볼륨 프로필" },
-  { id: 10, iconClass: "tradeicon-ticon_67", label: "가격범위" },
-  { id: 11, iconClass: "tradeicon-ticon_68", label: "기간" },
-  { id: 12, iconClass: "tradeicon-ticon_69", label: "날짜 및 가격 범위" },
+  { id: 1, iconClass: "tradeicon-ticon_31", label: "붓" },
+  { id: 2, iconClass: "tradeicon-ticon_32", label: "하이라이터" },
+  { id: 3, iconClass: "tradeicon-ticon_33", label: "화살표" },
+  { id: 4, iconClass: "tradeicon-ticon_34", label: "화살표" },
+  { id: 5, iconClass: "tradeicon-ticon_35", label: "위화살표" },
+  { id: 6, iconClass: "tradeicon-ticon_36", label: "아래화살표" },
+  { id: 7, iconClass: "tradeicon-ticon_37", label: "네모" },
+  { id: 8, iconClass: "tradeicon-ticon_38", label: "회전네모" },
+  { id: 9, iconClass: "tradeicon-ticon_39", label: "경로" },
+  { id: 10, iconClass: "tradeicon-ticon_40", label: "서클" },
+  { id: 11, iconClass: "tradeicon-ticon_41", label: "타원" },
+  { id: 12, iconClass: "tradeicon-ticon_42", label: "다선형" },
+  { id: 13, iconClass: "tradeicon-ticon_43", label: "세모" },
+  { id: 14, iconClass: "tradeicon-ticon_44", label: "원호" },
+  { id: 15, iconClass: "tradeicon-ticon_45", label: "곡선" },
+
 ];
 
 
