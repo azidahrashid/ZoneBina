@@ -95,6 +95,29 @@ const SIDEBAR_MENU5_ITEMS = [
   { id: 12, iconClass: "tradeicon-ticon_69", label: "날짜 및 가격 범위" },
 ];
 
+
+
+
+
+const SIDEBAR_MENU6_ITEMS = [
+  { id: 1, iconClass: "tradeicon-ticon_57", label: "붓" },
+  { id: 2, iconClass: "tradeicon-ticon_59", label: "하이라이터" },
+  { id: 3, iconClass: "tradeicon-ticon_60", label: "예측" },
+  { id: 4, iconClass: "tradeicon-ticon_61", label: "봉패턴" },
+  { id: 5, iconClass: "tradeicon-ticon_62", label: "고스트피드" },
+  { id: 6, iconClass: "tradeicon-ticon_63", label: "프로젝션" },
+  { id: 7, iconClass: "tradeicon-ticon_64", label: "앵커드 VWAP" },
+  { id: 8, iconClass: "tradeicon-ticon_65", label: "픽스트 레인지 볼륨 프로화일" },
+  { id: 9, iconClass: "tradeicon-ticon_66", label: "고정 볼륨 프로필" },
+  { id: 10, iconClass: "tradeicon-ticon_67", label: "가격범위" },
+  { id: 11, iconClass: "tradeicon-ticon_68", label: "기간" },
+  { id: 12, iconClass: "tradeicon-ticon_69", label: "날짜 및 가격 범위" },
+];
+
+
+
+
+
 const ChartSideMenu = () => {
 
 
@@ -436,13 +459,69 @@ const ChartSideMenu = () => {
                             <DropdownButton
                               align={{lg: 'end'}}
                               as={ButtonGroup}
-                              title={<span className="font-i-side trade_icon tradeicon-ticon_31" />}
+                              title={
+                                <span className={`font-i-side trade_icon ${selectedChartType6 ? SIDEBAR_MENU5_ITEMS.find(item => item.id === selectedChartType6)?.iconClass : 'tradeicon-ticon_31'}`} />
+                              }
                               id="bg-nested-dropdown"
                               drop="end"
                               className="moreright-btn bn-flex justify-content-between"
                             >
-                              <Dropdown.Item eventKey="1"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_26 d-flextrade_icon">봉</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="2"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_27 d-flextrade_icon">캔들</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
+                             
+
+                              {/* 프로젝션 Section */}
+                              <div className="px-3 py-2 text-muted text-sm">프로젝션</div>
+                              {SIDEBAR_MENU6_ITEMS.slice(0, 7).map((item) => (
+                                <Dropdown.Item
+                                  key={item.id}
+                                  eventKey={item.id}
+                                  active={selectedChartType6 === item.id}
+                                  onClick={() => handleChartTypeSelect(6, item)}
+                                >
+                                  <div className="bn-flex justify-content-between align-items-center">
+                                    <span className={`font-i trade_icon d-flextrade_icon ${item.iconClass}`}>{item.label}</span>
+                                  </div>
+                                </Dropdown.Item>
+                              ))}
+
+                              <div className="dropdown-divider"></div>
+
+
+                              {/* 볼륨-기반 Section */}
+                              <div className="px-3 py-2 text-muted text-sm">볼륨-기반</div>
+                              {SIDEBAR_MENU6_ITEMS.slice(6, 8).map((item) => (
+                                <Dropdown.Item
+                                  key={item.id}
+                                  eventKey={item.id}
+                                  active={selectedChartType6 === item.id}
+                                  onClick={() => handleChartTypeSelect(6, item)}
+                                >
+                                  <div className="bn-flex justify-content-between align-items-center">
+                                    <span className={`font-i trade_icon d-flextrade_icon ${item.iconClass}`}>{item.label}</span>
+                                  </div>
+                                </Dropdown.Item>
+                              ))}
+
+
+                              <div className="dropdown-divider"></div>
+
+
+                              {/* 계측기 Section */}
+                              <div className="px-3 py-2 text-muted text-sm">계측기</div>
+                              {SIDEBAR_MENU6_ITEMS.slice(8).map((item) => (
+                                <Dropdown.Item
+                                  key={item.id}
+                                  eventKey={item.id}
+                                  active={selectedChartType6 === item.id}
+                                  onClick={() => handleChartTypeSelect(6, item)}
+                                >
+                                  <div className="bn-flex justify-content-between align-items-center">
+                                    <span className={`font-i trade_icon d-flextrade_icon ${item.iconClass}`}>{item.label}</span>
+                                  </div>
+                                </Dropdown.Item>
+                              ))}
+
+
+
                             </DropdownButton>
 
 
