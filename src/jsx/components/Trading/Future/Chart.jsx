@@ -127,6 +127,7 @@ const ChartSideMenu = () => {
   const [selectedChartType3, setSelectedChartType3] = useState(localStorage.getItem('selectedChartType3') || null);
   const [selectedChartType4, setSelectedChartType4] = useState(localStorage.getItem('selectedChartType4') || null);
   const [selectedChartType5, setSelectedChartType5] = useState(localStorage.getItem('selectedChartType5') || null);
+  const [selectedChartType6, setSelectedChartType6] = useState(localStorage.getItem('selectedChartType6') || null);
 
   // Handle item selection for each dropdown and save it in localStorage
   const handleChartTypeSelect = (dropdown, item) => {
@@ -146,6 +147,9 @@ const ChartSideMenu = () => {
     } else if (dropdown === 5) {
       setSelectedChartType5(item.id);
       localStorage.setItem('selectedChartType5', item.id);
+    } else if (dropdown === 6) {
+      setSelectedChartType6(item.id);
+      localStorage.setItem('setSelectedChartType6', item.id);
     }
   };
 
