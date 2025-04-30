@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {
-
+  Button,
   ButtonGroup,
   Dropdown,
   DropdownButton,
@@ -623,30 +623,22 @@ const ChartSideMenu = () => {
                             <div className='dropdown-divider'></div>
 
 
-                            <DropdownButton
-                              align={{lg: 'end'}}
-                              as={ButtonGroup}
-                              title={<span className="font-i-side trade_icon tradeicon-ticon_7" />}
-                              id="bg-nested-dropdown"
-                              drop="end"
-                              className="moreright-btn bn-flex justify-content-between"
-                            >
-                              <Dropdown.Item eventKey="1"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_26 d-flextrade_icon">봉</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="2"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_27 d-flextrade_icon">캔들</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                            </DropdownButton>
+                  
 
 
-                            <DropdownButton
-                              align={{lg: 'end'}}
-                              as={ButtonGroup}
-                              title={<span className="font-i-side trade_icon tradeicon-ticon_8" />}
-                              id="bg-nested-dropdown"
-                              drop="end"
-                              className="moreright-btn bn-flex justify-content-between"
+                            <Button
+                              className="moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton"
                             >
-                              <Dropdown.Item eventKey="1"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_26 d-flextrade_icon">봉</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="2"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_27 d-flextrade_icon">캔들</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                            </DropdownButton>
+                              <span className="font-i-side trade_icon tradeicon-ticon_7" />
+                            </Button>
+
+                            <Button
+                              className="moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton"
+                            >
+                              <span className="font-i-side trade_icon tradeicon-ticon_8" />
+                            </Button>
+
+
 
 
 

@@ -3645,7 +3645,9 @@ textarea.form-control-lg {
   vertical-align: 0;
 }
 
-.dropdown.moredown-btn .dropdown-toggle.btn , .dropend.moreright-btn .dropdown-toggle.btn {
+.dropdown.moredown-btn .dropdown-toggle.btn ,
+ .dropend.moreright-btn .dropdown-toggle.btn ,
+  .moreright-btn.nonDropdownButton{
   border:0;
   background-color: transparent;
   color:inherit;
@@ -3666,14 +3668,18 @@ textarea.form-control-lg {
   padding:10px 3px;
 }
 
+.moreright-btn.nonDropdownButton {
+  color:#828690;
+}
 
-
-[data-theme-version=light][data-primary=color_2]  .dropdown-toggle.btn:hover  {
+[data-theme-version=light][data-primary=color_2]  .dropdown-toggle.btn:hover   ,
+  [data-theme-version=light][data-primary=color_2]  .nonDropdownButton:hover  {
  background-color: #f2f2f2;
 
 }
 
-[data-theme-version=dark][data-primary=color_2]  .dropdown-toggle.btn:hover {
+[data-theme-version=dark][data-primary=color_2]  .dropdown-toggle.btn:hover ,
+[data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:hover{
   background-color: var(--color-DisableBtn)
 }
 

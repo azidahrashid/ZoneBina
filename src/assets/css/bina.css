@@ -4746,3 +4746,8 @@ left: 0;
 .favourites-bar .font-i {
     font-size: 1.5rem;
 }
+
+
+[data-primary=color_2] .btn-primary.ghostbg  {
+    --button-bg:transparent;
+}
