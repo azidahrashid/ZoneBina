@@ -135,6 +135,12 @@ const SIDEBAR_MENU7_ITEMS = [
 ];
 
 
+const SIDEBAR_MENU8_ITEMS = [
+  { id: 1, iconClass: "tradeicon-ticon_9", label: "위크 마그넷" },
+  { id: 2, iconClass: "tradeicon-ticon_10", label: "스트롱 마그넷" },
+];
+
+
 
 
 
@@ -168,6 +174,9 @@ const ChartSideMenu = () => {
   const [selectedChartType7, setSelectedChartType7] = useState(
     parseInt(localStorage.getItem('selectedChartType7')) || SIDEBAR_MENU2_ITEMS[0].id
   );
+  const [selectedChartType8, setSelectedChartType8] = useState(
+    parseInt(localStorage.getItem('selectedChartType8')) || SIDEBAR_MENU2_ITEMS[0].id
+  );
 
 
   // Handle item selection for each dropdown and save it in localStorage
@@ -194,6 +203,9 @@ const ChartSideMenu = () => {
     } else if (dropdown === 7) {
       setSelectedChartType7(item.id);
       localStorage.setItem('selectedChartType7', item.id);
+    } else if (dropdown === 7) {
+      setSelectedChartType8(item.id);
+      localStorage.setItem('selectedChartType8', item.id);
     }
   };
 
@@ -591,7 +603,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType3 === item.id}
+                                  active={selectedChartType7 === item.id}
                                   onClick={() => handleChartTypeSelect(7, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -651,8 +663,21 @@ const ChartSideMenu = () => {
                               drop="end"
                               className="moreright-btn bn-flex justify-content-between"
                             >
-                              <Dropdown.Item eventKey="1"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_26 d-flextrade_icon">봉</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="2"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_27 d-flextrade_icon">캔들</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
+                              
+                              {SIDEBAR_MENU8_ITEMS.slice(0,1).map((item) => (
+                                <Dropdown.Item
+                                  key={item.id}
+                                  eventKey={item.id}
+                                  active={selectedChartType8 === item.id}
+                                  onClick={() => handleChartTypeSelect(8, item)}
+                                >
+                                  <div className="bn-flex justify-content-between align-items-center">
+                                    <span className={`font-i trade_icon d-flextrade_icon ${item.iconClass}`}>{item.label}</span>
+                                  </div>
+                                </Dropdown.Item>
+                              ))}
+
+
                             </DropdownButton>
 
 
