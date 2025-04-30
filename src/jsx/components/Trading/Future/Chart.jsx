@@ -658,13 +658,15 @@ const ChartSideMenu = () => {
                             <DropdownButton
                               align={{lg: 'end'}}
                               as={ButtonGroup}
-                              title={<span className="font-i-side trade_icon tradeicon-ticon_9" />}
+                              title={
+                                <span className={`font-i-side trade_icon ${selectedChartType8 ? SIDEBAR_MENU8_ITEMS.find(item => item.id === selectedChartType8)?.iconClass : 'tradeicon-ticon_9'}`} />
+                              }
                               id="bg-nested-dropdown"
                               drop="end"
                               className="moreright-btn bn-flex justify-content-between"
                             >
                               
-                              {SIDEBAR_MENU8_ITEMS.slice(0,1).map((item) => (
+                              {SIDEBAR_MENU8_ITEMS.slice(0,2).map((item) => (
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
