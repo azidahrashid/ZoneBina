@@ -4704,6 +4704,18 @@ left: 0;
     content: "\e9bd";
 }
 
+
+[data-theme-version=light][data-primary=color_2] .icondrop_menu .dropdown-menu .selectedMenu {
+    background-color: #2e2e2e;
+    color: white;
+}
+
+[data-theme-version=dark][data-primary=color_2] .icondrop_menu .dropdown-menu .selectedMenu {
+    background-color: #15181c;
+    color: white;
+}
+
+
 .icondrop_menu .dropdown-menu .dropdown-item .star_icon {
     display: inline-flex;
     border-radius:4px;

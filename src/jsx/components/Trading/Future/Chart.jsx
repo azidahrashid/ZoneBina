@@ -115,7 +115,23 @@ const SIDEBAR_MENU6_ITEMS = [
   { id: 13, iconClass: "tradeicon-ticon_43", label: "세모" },
   { id: 14, iconClass: "tradeicon-ticon_44", label: "원호" },
   { id: 15, iconClass: "tradeicon-ticon_45", label: "곡선" },
+  { id: 16, iconClass: "tradeicon-ticon_46", label: "더블곡선" },
+];
 
+
+
+const SIDEBAR_MENU7_ITEMS = [
+  { id: 1, iconClass: "tradeicon-ticon_12", label: "텍스트" },
+  { id: 2, iconClass: "tradeicon-ticon_13", label: "고정위치문자" },
+  { id: 3, iconClass: "tradeicon-ticon_14", label: "노트" },
+  { id: 4, iconClass: "tradeicon-ticon_15", label: "프라이스 노트" },
+  { id: 5, iconClass: "tradeicon-ticon_16", label: "핀" },
+  { id: 6, iconClass: "tradeicon-ticon_17", label: "테이블" },
+  { id: 7, iconClass: "tradeicon-ticon_18", label: "콜아웃" },
+  { id: 8, iconClass: "tradeicon-ticon_19", label: "코멘트" },
+  { id: 9, iconClass: "tradeicon-ticon_20", label: "가격라벨" },
+  { id: 10, iconClass: "tradeicon-ticon_21", label: "길잡이" },
+  { id: 11, iconClass: "tradeicon-ticon_22", label: "플래그 마크" },
 ];
 
 
@@ -126,12 +142,33 @@ const ChartSideMenu = () => {
 
 
   // State for each dropdown
-  const [selectedChartType1, setSelectedChartType1] = useState(localStorage.getItem('selectedChartType1') || null);
-  const [selectedChartType2, setSelectedChartType2] = useState(localStorage.getItem('selectedChartType2') || null);
-  const [selectedChartType3, setSelectedChartType3] = useState(localStorage.getItem('selectedChartType3') || null);
-  const [selectedChartType4, setSelectedChartType4] = useState(localStorage.getItem('selectedChartType4') || null);
-  const [selectedChartType5, setSelectedChartType5] = useState(localStorage.getItem('selectedChartType5') || null);
-  const [selectedChartType6, setSelectedChartType6] = useState(localStorage.getItem('selectedChartType6') || null);
+  const [selectedChartType1, setSelectedChartType1] = useState(
+    parseInt(localStorage.getItem('selectedChartType1')) || SIDEBAR_MENU1_ITEMS[0].id
+  );
+  
+  const [selectedChartType2, setSelectedChartType2] = useState(
+    parseInt(localStorage.getItem('selectedChartType2')) || SIDEBAR_MENU2_ITEMS[0].id
+  );
+
+  const [selectedChartType3, setSelectedChartType3] = useState(
+    parseInt(localStorage.getItem('selectedChartType3')) || SIDEBAR_MENU2_ITEMS[0].id
+  );
+
+  const [selectedChartType4, setSelectedChartType4] = useState(
+    parseInt(localStorage.getItem('selectedChartType4')) || SIDEBAR_MENU2_ITEMS[0].id
+  );
+
+  const [selectedChartType5, setSelectedChartType5] = useState(
+    parseInt(localStorage.getItem('selectedChartType5')) || SIDEBAR_MENU2_ITEMS[0].id
+  );
+
+  const [selectedChartType6, setSelectedChartType6] = useState(
+    parseInt(localStorage.getItem('selectedChartType6')) || SIDEBAR_MENU2_ITEMS[0].id
+  );
+  const [selectedChartType7, setSelectedChartType7] = useState(
+    parseInt(localStorage.getItem('selectedChartType7')) || SIDEBAR_MENU2_ITEMS[0].id
+  );
+
 
   // Handle item selection for each dropdown and save it in localStorage
   const handleChartTypeSelect = (dropdown, item) => {
@@ -153,7 +190,10 @@ const ChartSideMenu = () => {
       localStorage.setItem('selectedChartType5', item.id);
     } else if (dropdown === 6) {
       setSelectedChartType6(item.id);
-      localStorage.setItem('setSelectedChartType6', item.id);
+      localStorage.setItem('selectedChartType6', item.id);
+    } else if (dropdown === 7) {
+      setSelectedChartType7(item.id);
+      localStorage.setItem('selectedChartType7', item.id);
     }
   };
 
@@ -468,7 +508,7 @@ const ChartSideMenu = () => {
                               align={{lg: 'end'}}
                               as={ButtonGroup}
                               title={
-                                <span className={`font-i-side trade_icon ${selectedChartType6 ? SIDEBAR_MENU5_ITEMS.find(item => item.id === selectedChartType6)?.iconClass : 'tradeicon-ticon_31'}`} />
+                                <span className={`font-i-side trade_icon ${selectedChartType6 ? SIDEBAR_MENU6_ITEMS.find(item => item.id === selectedChartType6)?.iconClass : 'tradeicon-ticon_31'}`} />
                               }
                               id="bg-nested-dropdown"
                               drop="end"
@@ -478,7 +518,7 @@ const ChartSideMenu = () => {
 
                               {/* 프로젝션 Section */}
                               <div className="px-3 py-2 text-muted text-sm">프로젝션</div>
-                              {SIDEBAR_MENU6_ITEMS.slice(0, 7).map((item) => (
+                              {SIDEBAR_MENU6_ITEMS.slice(0, 2).map((item) => (
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
@@ -496,7 +536,7 @@ const ChartSideMenu = () => {
 
                               {/* 볼륨-기반 Section */}
                               <div className="px-3 py-2 text-muted text-sm">볼륨-기반</div>
-                              {SIDEBAR_MENU6_ITEMS.slice(6, 8).map((item) => (
+                              {SIDEBAR_MENU6_ITEMS.slice(2, 6).map((item) => (
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
@@ -515,7 +555,7 @@ const ChartSideMenu = () => {
 
                               {/* 계측기 Section */}
                               <div className="px-3 py-2 text-muted text-sm">계측기</div>
-                              {SIDEBAR_MENU6_ITEMS.slice(8).map((item) => (
+                              {SIDEBAR_MENU6_ITEMS.slice(6).map((item) => (
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
@@ -537,13 +577,28 @@ const ChartSideMenu = () => {
                             <DropdownButton
                               align={{lg: 'end'}}
                               as={ButtonGroup}
-                              title={<span className="font-i-side trade_icon tradeicon-ticon_12" />}
+                              title={
+                                <span className={`font-i-side trade_icon ${selectedChartType7 ? SIDEBAR_MENU7_ITEMS.find(item => item.id === selectedChartType7)?.iconClass : 'tradeicon-ticon_12'}`} />
+                              }
                               id="bg-nested-dropdown"
                               drop="end"
                               className="moreright-btn bn-flex justify-content-between"
                             >
-                              <Dropdown.Item eventKey="1"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_26 d-flextrade_icon">봉</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
-                              <Dropdown.Item eventKey="2"><div className="bn-flex justify-content-between align-items-center"><span className="font-i trade_icon tradeicon-ticon_27 d-flextrade_icon">캔들</span><span className="font-i trade_icon tradeicon-ticon_0 star_icon"></span></div></Dropdown.Item>
+                             
+                             
+                              <div className="px-3 py-2 text-muted text-sm">텍스트 & 노트</div>
+                              {SIDEBAR_MENU7_ITEMS.slice(0,11).map((item) => (
+                                <Dropdown.Item
+                                  key={item.id}
+                                  eventKey={item.id}
+                                  active={selectedChartType3 === item.id}
+                                  onClick={() => handleChartTypeSelect(7, item)}
+                                >
+                                  <div className="bn-flex justify-content-between align-items-center">
+                                    <span className={`font-i trade_icon d-flextrade_icon ${item.iconClass}`}>{item.label}</span>
+                                  </div>
+                                </Dropdown.Item>
+                              ))}
                             </DropdownButton>
                             
 
