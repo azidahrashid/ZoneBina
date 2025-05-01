@@ -148,67 +148,34 @@ const ChartSideMenu = () => {
 
 
   // State for each dropdown
-  const [selectedChartType1, setSelectedChartType1] = useState(
-    parseInt(localStorage.getItem('selectedChartType1')) || SIDEBAR_MENU1_ITEMS[0].id
-  );
+  const defaultIds = {
+    1: parseInt(localStorage.getItem('selectedChartType1')) || SIDEBAR_MENU1_ITEMS[0].id,
+    2: parseInt(localStorage.getItem('selectedChartType2')) || SIDEBAR_MENU2_ITEMS[0].id,
+    3: parseInt(localStorage.getItem('selectedChartType3')) || SIDEBAR_MENU3_ITEMS[0].id,
+    4: parseInt(localStorage.getItem('selectedChartType4')) || SIDEBAR_MENU4_ITEMS[0].id,
+    5: parseInt(localStorage.getItem('selectedChartType5')) || SIDEBAR_MENU5_ITEMS[0].id,
+    6: parseInt(localStorage.getItem('selectedChartType6')) || SIDEBAR_MENU6_ITEMS[0].id,
+    7: parseInt(localStorage.getItem('selectedChartType7')) || SIDEBAR_MENU7_ITEMS[0].id,
+    8: parseInt(localStorage.getItem('selectedChartType8')) || SIDEBAR_MENU8_ITEMS[0].id,
+  };
   
-  const [selectedChartType2, setSelectedChartType2] = useState(
-    parseInt(localStorage.getItem('selectedChartType2')) || SIDEBAR_MENU2_ITEMS[0].id
-  );
+  const [selectedChartType, setselectedChartType] = useState(defaultIds);
+  
 
-  const [selectedChartType3, setSelectedChartType3] = useState(
-    parseInt(localStorage.getItem('selectedChartType3')) || SIDEBAR_MENU2_ITEMS[0].id
-  );
-
-  const [selectedChartType4, setSelectedChartType4] = useState(
-    parseInt(localStorage.getItem('selectedChartType4')) || SIDEBAR_MENU2_ITEMS[0].id
-  );
-
-  const [selectedChartType5, setSelectedChartType5] = useState(
-    parseInt(localStorage.getItem('selectedChartType5')) || SIDEBAR_MENU2_ITEMS[0].id
-  );
-
-  const [selectedChartType6, setSelectedChartType6] = useState(
-    parseInt(localStorage.getItem('selectedChartType6')) || SIDEBAR_MENU2_ITEMS[0].id
-  );
-  const [selectedChartType7, setSelectedChartType7] = useState(
-    parseInt(localStorage.getItem('selectedChartType7')) || SIDEBAR_MENU2_ITEMS[0].id
-  );
-  const [selectedChartType8, setSelectedChartType8] = useState(
-    parseInt(localStorage.getItem('selectedChartType8')) || SIDEBAR_MENU2_ITEMS[0].id
-  );
-
-
-  // Handle item selection for each dropdown and save it in localStorage
   const handleChartTypeSelect = (dropdown, item) => {
-    // Update selected state based on the dropdown
-    if (dropdown === 1) {
-      setSelectedChartType1(item.id);
-      localStorage.setItem('selectedChartType1', item.id);
-    } else if (dropdown === 2) {
-      setSelectedChartType2(item.id);
-      localStorage.setItem('selectedChartType2', item.id);
-    } else if (dropdown === 3) {
-      setSelectedChartType3(item.id);
-      localStorage.setItem('selectedChartType3', item.id);
-    } else if (dropdown === 4) {
-      setSelectedChartType4(item.id);
-      localStorage.setItem('selectedChartType4', item.id);
-    } else if (dropdown === 5) {
-      setSelectedChartType5(item.id);
-      localStorage.setItem('selectedChartType5', item.id);
-    } else if (dropdown === 6) {
-      setSelectedChartType6(item.id);
-      localStorage.setItem('selectedChartType6', item.id);
-    } else if (dropdown === 7) {
-      setSelectedChartType7(item.id);
-      localStorage.setItem('selectedChartType7', item.id);
-    } else if (dropdown === 7) {
-      setSelectedChartType8(item.id);
-      localStorage.setItem('selectedChartType8', item.id);
-    }
+    setselectedChartType((prev) => {
+      const updated = { ...prev, [dropdown]: item.id };
+      localStorage.setItem(`selectedChartType${dropdown}`, item.id);
+      return updated;
+    });
+
+    setActiveDropdown(dropdown);
   };
 
+
+  const [activeDropdown, setActiveDropdown] = useState(null);
+
+  
 
 
   return (
@@ -229,17 +196,17 @@ const ChartSideMenu = () => {
                               align={{ lg: 'end' }}
                               as={ButtonGroup}
                               title={
-                                <span className={`font-i-side trade_icon ${selectedChartType1 ? SIDEBAR_MENU1_ITEMS.find(item => item.id === selectedChartType1)?.iconClass : 'tradeicon-ticon_205'}`} />
+                                <span className={`font-i-side trade_icon ${SIDEBAR_MENU1_ITEMS.find(item => item.id === selectedChartType[1])?.iconClass || 'tradeicon-ticon_205'}`} />
                               }
                               id="bg-nested-dropdown-1"
                               drop="end"
-                              className="moreright-btn bn-flex justify-content-between"
+                              className={`moreright-btn bn-flex justify-content-between ${activeDropdown === 1 ? 'active' : ''}`}
                             >
                               {SIDEBAR_MENU1_ITEMS.slice(0,4).map((item) => (
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType1 === item.id}
+                                  active={selectedChartType[1] === item.id}
                                   onClick={() => handleChartTypeSelect(1, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -255,7 +222,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType1 === item.id}
+                                  active={selectedChartType[1] === item.id}
                                   onClick={() => handleChartTypeSelect(1, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -271,11 +238,11 @@ const ChartSideMenu = () => {
                               align={{ lg: 'end' }}
                               as={ButtonGroup}
                               title={
-                                <span className={`font-i-side trade_icon ${selectedChartType2 ? SIDEBAR_MENU2_ITEMS.find(item => item.id === selectedChartType2)?.iconClass : 'tradeicon-ticon_165'}`} />
+                                <span className={`font-i-side trade_icon ${SIDEBAR_MENU2_ITEMS.find(item => item.id === selectedChartType[2])?.iconClass || 'tradeicon-ticon_165'}`} />
                               }
                               id="bg-nested-dropdown-2"
                               drop="end"
-                              className="moreright-btn bn-flex justify-content-between"
+                              className={`moreright-btn bn-flex justify-content-between ${activeDropdown === 2 ? 'active' : ''}`}
                             >
                               {/* 라인 Section */}
                               <div className="px-3 py-2 text-muted text-sm">라인</div>
@@ -283,7 +250,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType2 === item.id}
+                                  active={selectedChartType[2] === item.id}
                                   onClick={() => handleChartTypeSelect(2, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -300,7 +267,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType2 === item.id}
+                                  active={selectedChartType[2] === item.id}
                                   onClick={() => handleChartTypeSelect(2, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -317,7 +284,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType2 === item.id}
+                                  active={selectedChartType[2] === item.id}
                                   onClick={() => handleChartTypeSelect(2, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -336,11 +303,11 @@ const ChartSideMenu = () => {
                               align={{lg: 'end'}}
                               as={ButtonGroup}
                               title={
-                                <span className={`font-i-side trade_icon ${selectedChartType3 ? SIDEBAR_MENU3_ITEMS.find(item => item.id === selectedChartType3)?.iconClass : 'tradeicon-ticon_134'}`} />
+                                <span className={`font-i-side trade_icon ${SIDEBAR_MENU3_ITEMS.find(item => item.id === selectedChartType[3])?.iconClass || 'tradeicon-ticon_134'}`} />
                               }
-                              id="bg-nested-dropdown"
+                              id="bg-nested-dropdown-3"
                               drop="end"
-                              className="moreright-btn bn-flex justify-content-between"
+                              className={`moreright-btn bn-flex justify-content-between ${activeDropdown === 3 ? 'active' : ''}`}
                             >
                               {/* 피보나치 Section */}
                               <div className="px-3 py-2 text-muted text-sm">피보나치</div>
@@ -348,7 +315,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType3 === item.id}
+                                  active={selectedChartType[3] === item.id}
                                   onClick={() => handleChartTypeSelect(3, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -366,7 +333,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType3 === item.id}
+                                  active={selectedChartType[3] === item.id}
                                   onClick={() => handleChartTypeSelect(3, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -386,11 +353,11 @@ const ChartSideMenu = () => {
                               align={{lg: 'end'}}
                               as={ButtonGroup}
                               title={
-                                <span className={`font-i-side trade_icon ${selectedChartType4 ? SIDEBAR_MENU4_ITEMS.find(item => item.id === selectedChartType4)?.iconClass : 'tradeicon-ticon_84'}`} />
+                                <span className={`font-i-side trade_icon ${SIDEBAR_MENU4_ITEMS.find(item => item.id === selectedChartType[4])?.iconClass || 'tradeicon-ticon_84'}`} />
                               }
-                              id="bg-nested-dropdown"
+                              id="bg-nested-dropdown-4"
                               drop="end"
-                              className="moreright-btn bn-flex justify-content-between"
+                              className={`moreright-btn bn-flex justify-content-between ${activeDropdown === 4 ? 'active' : ''}`}
                             >
 
                               {/* 패턴 Section */}
@@ -399,7 +366,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType4 === item.id}
+                                  active={selectedChartType[4] === item.id}
                                   onClick={() => handleChartTypeSelect(4, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -417,7 +384,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType4 === item.id}
+                                  active={selectedChartType[4] === item.id}
                                   onClick={() => handleChartTypeSelect(4, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -436,7 +403,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType4 === item.id}
+                                  active={selectedChartType[4] === item.id}
                                   onClick={() => handleChartTypeSelect(4, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -452,11 +419,11 @@ const ChartSideMenu = () => {
                               align={{lg: 'end'}}
                               as={ButtonGroup}
                               title={
-                                <span className={`font-i-side trade_icon ${selectedChartType5 ? SIDEBAR_MENU5_ITEMS.find(item => item.id === selectedChartType5)?.iconClass : 'tradeicon-ticon_57'}`} />
+                                <span className={`font-i-side trade_icon ${SIDEBAR_MENU5_ITEMS.find(item => item.id === selectedChartType[5])?.iconClass || 'tradeicon-ticon_57'}`} />
                               }
-                              id="bg-nested-dropdown"
+                              id="bg-nested-dropdown-5"
                               drop="end"
-                              className="moreright-btn bn-flex justify-content-between"
+                              className={`moreright-btn bn-flex justify-content-between ${activeDropdown === 5 ? 'active' : ''}`}
                             >
                               
                               {/* 프로젝션 Section */}
@@ -465,7 +432,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType5 === item.id}
+                                  active={selectedChartType[5] === item.id}
                                   onClick={() => handleChartTypeSelect(5, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -483,7 +450,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType5 === item.id}
+                                  active={selectedChartType[5] === item.id}
                                   onClick={() => handleChartTypeSelect(5, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -502,7 +469,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType5 === item.id}
+                                  active={selectedChartType[5] === item.id}
                                   onClick={() => handleChartTypeSelect(5, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -520,11 +487,11 @@ const ChartSideMenu = () => {
                               align={{lg: 'end'}}
                               as={ButtonGroup}
                               title={
-                                <span className={`font-i-side trade_icon ${selectedChartType6 ? SIDEBAR_MENU6_ITEMS.find(item => item.id === selectedChartType6)?.iconClass : 'tradeicon-ticon_31'}`} />
+                                <span className={`font-i-side trade_icon ${SIDEBAR_MENU6_ITEMS.find(item => item.id === selectedChartType[6])?.iconClass || 'tradeicon-ticon_31'}`} />
                               }
-                              id="bg-nested-dropdown"
+                              id="bg-nested-dropdown-6"
                               drop="end"
-                              className="moreright-btn bn-flex justify-content-between"
+                              className={`moreright-btn bn-flex justify-content-between ${activeDropdown === 6 ? 'active' : ''}`}
                             >
                              
 
@@ -534,7 +501,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType6 === item.id}
+                                  active={selectedChartType[6] === item.id}
                                   onClick={() => handleChartTypeSelect(6, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -552,7 +519,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType6 === item.id}
+                                  active={selectedChartType[6] === item.id}
                                   onClick={() => handleChartTypeSelect(6, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -571,7 +538,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType6 === item.id}
+                                  active={selectedChartType[6] === item.id}
                                   onClick={() => handleChartTypeSelect(6, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -590,11 +557,11 @@ const ChartSideMenu = () => {
                               align={{lg: 'end'}}
                               as={ButtonGroup}
                               title={
-                                <span className={`font-i-side trade_icon ${selectedChartType7 ? SIDEBAR_MENU7_ITEMS.find(item => item.id === selectedChartType7)?.iconClass : 'tradeicon-ticon_12'}`} />
+                                <span className={`font-i-side trade_icon ${SIDEBAR_MENU7_ITEMS.find(item => item.id === selectedChartType[7])?.iconClass || 'tradeicon-ticon_12'}`} />
                               }
-                              id="bg-nested-dropdown"
+                              id="bg-nested-dropdown-7"
                               drop="end"
-                              className="moreright-btn bn-flex justify-content-between"
+                              className={`moreright-btn bn-flex justify-content-between ${activeDropdown === 7 ? 'active' : ''}`}
                             >
                              
                              
@@ -603,7 +570,7 @@ const ChartSideMenu = () => {
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType7 === item.id}
+                                  active={selectedChartType[7] === item.id}
                                   onClick={() => handleChartTypeSelect(7, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">
@@ -651,18 +618,18 @@ const ChartSideMenu = () => {
                               align={{lg: 'end'}}
                               as={ButtonGroup}
                               title={
-                                <span className={`font-i-side trade_icon ${selectedChartType8 ? SIDEBAR_MENU8_ITEMS.find(item => item.id === selectedChartType8)?.iconClass : 'tradeicon-ticon_9'}`} />
+                                <span className={`font-i-side trade_icon ${SIDEBAR_MENU8_ITEMS.find(item => item.id === selectedChartType[8])?.iconClass || 'tradeicon-ticon_9'}`} />
                               }
-                              id="bg-nested-dropdown"
+                              id="bg-nested-dropdown-8"
                               drop="end"
-                              className="moreright-btn bn-flex justify-content-between"
+                              className={`moreright-btn bn-flex justify-content-between ${activeDropdown === 8 ? 'active' : ''}`}
                             >
                               
                               {SIDEBAR_MENU8_ITEMS.slice(0,2).map((item) => (
                                 <Dropdown.Item
                                   key={item.id}
                                   eventKey={item.id}
-                                  active={selectedChartType8 === item.id}
+                                  active={selectedChartType[8] === item.id}
                                   onClick={() => handleChartTypeSelect(8, item)}
                                 >
                                   <div className="bn-flex justify-content-between align-items-center">

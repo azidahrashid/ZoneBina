@@ -3670,17 +3670,28 @@ textarea.form-control-lg {
 
 .moreright-btn.nonDropdownButton {
   color:#828690;
+  --button-color: #828690;
 }
 
 [data-theme-version=light][data-primary=color_2]  .dropdown-toggle.btn:hover   ,
-  [data-theme-version=light][data-primary=color_2]  .nonDropdownButton:hover  {
+[data-theme-version=light][data-primary=color_2]  .nonDropdownButton:hover ,
+[data-theme-version=light][data-primary=color_2] .nonDropdownButton:active,
+[data-theme-version=light][data-primary=color_2]  .nonDropdownButton:focus ,
+[data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn:hover .dropdown-toggle::after {
  background-color: #f2f2f2;
-
+ --button-bg:#f2f2f2;
+ --primary-hover:#f2f2f2;
 }
 
+
 [data-theme-version=dark][data-primary=color_2]  .dropdown-toggle.btn:hover ,
-[data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:hover{
-  background-color: var(--color-DisableBtn)
+[data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:hover ,
+[data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:active,
+[data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:focus,
+[data-theme-version=dark][data-primary=color_2]  .fixChart_SideMenu .moreright-btn:hover .dropdown-toggle::after {
+  background-color: var(--color-DisableBtn);
+  --button-bg:var(--color-DisableBtn);
+  --primary-hover:var(--color-DisableBtn);
 }
 
 .dropdown.moredown-btn .dropdown-toggle::after{
