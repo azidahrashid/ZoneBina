@@ -3463,6 +3463,9 @@ textarea.form-control-lg {
   right: 0 /* rtl:ignore */;
   left: auto /* rtl:ignore */;
 }
+.dropdown-menu-end.dropdown-menu-lg-start[data-bs-popper] {
+  right: auto;
+}
 
 @media (min-width: 576px) {
   .dropdown-menu-sm-start {
@@ -17681,6 +17684,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebar-position=fixed][data-header-position=fixed] .nav-header {
   position: fixed;
+  z-index: 15;
 }
 
 [data-sidebar-style=overlay][data-nav-headerbg=color_1] .menu-toggle .nav-header .color-title {
@@ -31916,6 +31920,7 @@ button:focus {
   border-radius: 0.625rem;
   box-shadow: 0 0 3.125rem 0 rgba(82, 63, 105, 0.15);
   margin-top: 0;
+  z-index: 12;
 }
 .dropdown-menu .dropdown-item {
   font-size: 1rem;

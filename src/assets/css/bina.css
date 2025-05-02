@@ -4542,6 +4542,13 @@ left: 0;
     .future_orderbook_section {
       display: none;
     }
+
+    .future_main_section {
+        height: calc(100vh - 343px - 18vh);
+        min-height: 565px;
+    }
+
+
   }
 
   @media only screen and (max-width:870px) {
@@ -4620,6 +4627,10 @@ left: 0;
     .modal-size-extra-large {
       width: 90%;
     }
+
+
+
+
   }
 
 
@@ -4633,18 +4644,31 @@ left: 0;
     pointer-events: none;
   }
 
+  @media only screen and (min-width: 801px) {
+    .future_main_section,
+    .future_orderbook_section,
+    .future_trade_section {
+        min-height: calc(100vh - 5.125rem - 18vh);
+    }
+  }
 
-.future_main_section,
-.future_orderbook_section,
-.future_trade_section {
-    min-height: calc(100vh - 5.125rem - 18vh);
-}
 
 .content-body .container-fluid {
     height: 100vh;
+
 }
+
+.col-xxl-2.future_trade_section.fixed-tradebar.closed, .col-xxl-2.future_trade_section.fixed-tradebar.open {
+    position: fixed;
+    bottom: 0;
+    z-index: 20;
+    margin:0;
+}
+
 .col-xxl-2.future_trade_section.fixed-tradebar.closed {
-    height: 20vh;
+    /* height: 20vh; */
+    height:50px;
+    
 }
 .row.future_chart_section {
     height: 30vh;
@@ -4666,7 +4690,7 @@ left: 0;
 
 .fixChart_SideMenu {
     display: inline-flex; 
-    height: calc(100% - 77px);
+    height: calc(100% - 82px);
     position: absolute;
     z-index: 9;
     border-radius: 0 5px 5px 0;
