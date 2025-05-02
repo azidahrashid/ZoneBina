@@ -4548,6 +4548,19 @@ left: 0;
         min-height: 565px;
     }
 
+    .col-xxl-2.future_trade_section.fixed-tradebar.closed, .col-xxl-2.future_trade_section.fixed-tradebar.open {
+        position: fixed;
+        bottom: 0;
+        z-index: 20;
+        margin:0;
+    }
+    
+    .col-xxl-2.future_trade_section.fixed-tradebar.closed {
+        /* height: 20vh; */
+        height:50px;
+        
+    }
+
 
   }
 
@@ -4658,18 +4671,7 @@ left: 0;
 
 }
 
-.col-xxl-2.future_trade_section.fixed-tradebar.closed, .col-xxl-2.future_trade_section.fixed-tradebar.open {
-    position: fixed;
-    bottom: 0;
-    z-index: 20;
-    margin:0;
-}
 
-.col-xxl-2.future_trade_section.fixed-tradebar.closed {
-    /* height: 20vh; */
-    height:50px;
-    
-}
 .row.future_chart_section {
     height: 30vh;
 }
