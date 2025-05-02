@@ -3673,7 +3673,8 @@ textarea.form-control-lg {
   --button-color: #828690;
 }
 
-[data-theme-version=light][data-primary=color_2]  .dropdown-toggle.btn:hover   ,
+[data-theme-version=light][data-primary=color_2]  .dropdown-toggle.btn:hover ,
+[data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.active .dropdown-toggle,  
 [data-theme-version=light][data-primary=color_2]  .nonDropdownButton:hover ,
 [data-theme-version=light][data-primary=color_2] .nonDropdownButton:active,
 [data-theme-version=light][data-primary=color_2]  .nonDropdownButton:focus ,
@@ -3685,6 +3686,7 @@ textarea.form-control-lg {
 
 
 [data-theme-version=dark][data-primary=color_2]  .dropdown-toggle.btn:hover ,
+[data-theme-version=dark][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.active .dropdown-toggle,
 [data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:hover ,
 [data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:active,
 [data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:focus,
@@ -24252,10 +24254,18 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   background-color: #1E2329;
   box-shadow: 0rem 0rem 0rem 0.0625rem rgba(255, 255, 255, 0.1);
 }
+
+
 [data-theme-version=dark] .dropdown-menu .dropdown-item {
   color: #777777;
 }
-[data-theme-version=dark] .dropdown-menu .dropdown-item.selected, [data-theme-version=dark] .dropdown-menu .dropdown-item.selected.active, [data-theme-version=dark] .dropdown-menu .dropdown-item.active, [data-theme-version=dark] .dropdown-menu .dropdown-item:hover, [data-theme-version=dark] .dropdown-menu .dropdown-item:focus {
+
+
+[data-theme-version=dark] .dropdown-menu .dropdown-item.selected,
+ [data-theme-version=dark] .dropdown-menu .dropdown-item.selected.active,
+  [data-theme-version=dark] .dropdown-menu .dropdown-item.active, 
+  [data-theme-version=dark] .dropdown-menu .dropdown-item:hover,
+   [data-theme-version=dark] .dropdown-menu .dropdown-item:focus {
   background-color: #1E2329;
   color: #fff;
 }

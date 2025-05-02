@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DropDownUI from "../../bootstrap/DropDownUi";
-import { Clock } from 'lucide-react'; 
+ 
 import {
   ButtonGroup,
   Dropdown,
@@ -85,22 +85,18 @@ const ChartTab = ({ onTimeframeChange }) => {
       <div className="border-b-[1px] border-x-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] py-2">
         <div className="d-grid grid-cols-[auto_min-content] align-items-center h-full timechart_wrap">
           <div className="d-flex align-items-center relative mr-[24px]">
-            <div className="d-flex cursor-pointer align-items-center justify-content-start position-absolute w-[30px] h-[20px] left-[-1px] z-[1] leftarrow">
-              <svg className="bn-svg w-[16px] h-[16px] text-IconNormal" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M11.934 12l3.89 3.89-1.769 1.767L8.398 12l1.768-1.768 3.89-3.889 1.767 1.768-3.889 3.89z" fill="currentColor"></path>
-              </svg>
-            </div>
+ 
 
             <div className="d-flex flex-row items-center h-full w-full gap-[--space-m] [&::-webkit-scrollbar]:hidden">
               <div className="d-flex align-items-center gap-[--space-m]">
                 <div className="!ml-[0px]">
-                  <div className="bn-flex h-[20px]">
+                  <div className="bn-flex">
                     <div className="bn-flex justify-content-center gap-[8px] mx-4 icondrop_menu">
 
 
                           
                           <div className="timeframe_dropdown bn-flex justify-center align-items-center" style={{lineHeight: '1'}}>
-                            <Clock className="w-3 h-3 text-IconNormal" />
+                           
                             <DropDownUI
                                 options={TIMEFRAME_OPTIONS}
                                 placeholder="Time" 
@@ -112,17 +108,18 @@ const ChartTab = ({ onTimeframeChange }) => {
                             <div className='dropdown-divider-side'></div>
 
 
-                              <div className="favourites-bar d-flex gap-2">
-                                {favourites.map((item) => (
-                                  <span
-                                    key={item.id}
-                                    className={`font-i trade_icon ${item.iconClass} d-flex trade_icon cursor-pointer`}
-                                    onClick={() => handleFavouriteClick(item)}
-                                  >
-                                  
-                                  </span>
-                                ))}
-                              </div>
+                            <div className="favourites-bar d-flex gap-2">
+                            {favourites.map((item) => (
+                              <span
+                                key={item.id}
+                                className={`font-i trade_icon ${item.iconClass} d-flex trade_icon cursor-pointer ${
+                                  selectedChartType === item.id ? 'active' : ''
+                                }`}
+                                onClick={() => handleChartTypeSelect(item)}
+                              ></span>
+                            ))}
+                          </div>
+
 
                                   
 
@@ -148,7 +145,7 @@ const ChartTab = ({ onTimeframeChange }) => {
                                       {item.label}
                                     </span>
                                     <span
-                                      className={`font-i trade_icon ${favourites.some(fav => fav.id === item.id) ? "tradeicon-ticon_filled_star" : "tradeicon-ticon_0"} star_icon`}
+                                      className={`font-i trade_icon ${favourites.some(fav => fav.id === item.id) ? "tradeicon-ticon_189 bookmarks" : "tradeicon-ticon_0"} tradeicon- star_icon`}
                                       onClick={(e) => {
                                         e.stopPropagation();
                                         toggleFavourite(item);
