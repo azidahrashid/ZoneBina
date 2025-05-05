@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import DropDownUI from "../../bootstrap/DropDownUi";
- 
-import {
-  ButtonGroup,
-  Dropdown,
-  DropdownButton,
-} from "react-bootstrap";
+ import {
+   ButtonGroup,
+   Dropdown,
+   DropdownButton,
+ } from "react-bootstrap";
 
 
 const TIMEFRAME_OPTIONS = ["15m", "1H", "4H", "1D", "1W"];
@@ -171,6 +170,8 @@ const ChartTab = ({ onTimeframeChange }) => {
           </div>
         </div>
       </div>
+
+  
     </>
   );
 };
