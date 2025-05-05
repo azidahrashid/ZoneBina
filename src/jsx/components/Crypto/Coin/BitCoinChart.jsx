@@ -290,12 +290,13 @@ class BitCoinChart extends React.Component {
 
   render() {
     return (
-      <div id="bitcoinhChart">
+      <div id="bitcoinhChart" className="w-full aspect-[16/9]">
         <ReactApexChart
             options={this.state.options}
             series={this.state.series}
             type="candlestick"
-            height={340}
+             width="100%"
+        height="100%"
         />
       </div>
     );

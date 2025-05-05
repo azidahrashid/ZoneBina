@@ -4817,3 +4817,28 @@ left: 0;
 [data-primary=color_2] .btn-primary.ghostbg  {
     --button-bg:transparent;
 }
+
+
+
+.fixChart_SideChart {
+
+}
+
+.chart_container_ {
+
+    width: 100%;
+}
+
+.chart_container_ .fixChart_SideChart {
+
+    float: right;
+    width: calc(100% - 45px);
+    border: 0;
+}
+
+.chart_container_ .fixChart_SideChart #bitcoinhChart {
+    height: calc(100vh - 12.125rem - 18vh);
+}
+
+
+

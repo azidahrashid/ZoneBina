@@ -193,21 +193,11 @@ const ChartSideMenu = () => {
 
        {/* chart area */}
         <div className="fixChart_SideChart border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] py-2">
-            <div className="d-grid grid-cols-[auto_min-content] align-items-start h-full">
-                <div className="d-flex align-items-center relative mr-[24px]">
-                  <div className="d-flex flex-row items-center h-full w-full gap-[--space-m] [&::-webkit-scrollbar]:hidden">
-                    <div className="d-flex align-items-center gap-[--space-m]">
-                      <div className="!ml-[0px]">
-                        <div className="bn-flex">
+         
                           <div className="bn-flex justify-content-center mx-1 coinchart flex-column">
                             <BitCoinChart /> 
                         </div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                       
         </div> 
 
 
