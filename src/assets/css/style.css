@@ -3647,13 +3647,13 @@ textarea.form-control-lg {
 .dropdown  .dropdown-toggle::after {
   vertical-align: 0;
 }
-
+.moreright-btn .dropdown-toggle.btn,
 .dropdown.moredown-btn .dropdown-toggle.btn ,
- .dropend.moreright-btn .dropdown-toggle.btn ,
-  .moreright-btn.nonDropdownButton{
+.fixChart_SideMenu .moreright-btn .dropdown-toggle.btn ,
+.moreright-btn.nonDropdownButton{
   border:0;
   background-color: transparent;
-  color:inherit;
+
   font-size:0.6rem;
   font-weight:100;
   padding:5px 3px;
@@ -3663,25 +3663,53 @@ textarea.form-control-lg {
   align-items: center;
 }
 
+[data-theme-version=dark][data-headerbg=color_2]  .dropdown.moredown-btn .dropdown-toggle.btn ,
+[data-theme-version=dark][data-headerbg=color_2] .fixChart_SideMenu .moreright-btn .dropdown-toggle.btn ,
+[data-theme-version=dark][data-headerbg=color_2] .moreright-btn.nonDropdownButton{
+color:#828690;
+--button-color: #828690;
+}
+
+
+[data-theme-version=light][data-headerbg=color_2]  .dropdown.moredown-btn .dropdown-toggle.btn ,
+[data-theme-version=light][data-headerbg=color_2] .fixChart_SideMenu .moreright-btn .dropdown-toggle.btn ,
+[data-theme-version=light][data-headerbg=color_2] .moreright-btn.nonDropdownButton{
+    color:#828690;
+    --button-color: #000;
+}
+
+
+[data-theme-version=dark][data-headerbg=color_2] .dropdown.moredown-btn.isselected .dropdown-toggle.btn, 
+[data-theme-version=dark][data-headerbg=color_2] .fixChart_SideMenu .moreright-btn.isselected .dropdown-toggle.btn,
+ [data-theme-version=dark][data-headerbg=color_2] .moreright-btn.nonDropdownButton.isselected {
+  color:#fff;
+  --button-color: #fff;
+ }
+
+
+
+
 .dropdown.moredown-btn .dropdown-toggle.btn  {
   padding:5px 3px;
 }
 
-.dropend.moreright-btn .dropdown-toggle.btn {
+.moreright-btn .dropdown-toggle.btn {
   padding:10px 3px;
 }
 
-.moreright-btn.nonDropdownButton {
-  color:#828690;
-  --button-color: #828690;
+.fixChart_SideMenu .moreright-btn .dropdown-menu[data-bs-popper] {
+  margin-left: 0.7rem;
 }
+
 
 [data-theme-version=light][data-primary=color_2]  .dropdown-toggle.btn:hover ,
 [data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.active .dropdown-toggle,  
 [data-theme-version=light][data-primary=color_2]  .nonDropdownButton:hover ,
 [data-theme-version=light][data-primary=color_2] .nonDropdownButton:active,
 [data-theme-version=light][data-primary=color_2]  .nonDropdownButton:focus ,
-[data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn:hover .dropdown-toggle::after {
+[data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn:hover .dropdown-toggle::after ,
+[data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.isselected .dropdown-toggle::after ,
+[data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.isselected  .dropdown-toggle {
  background-color: #f2f2f2;
  --button-bg:#f2f2f2;
  --primary-hover:#f2f2f2;
@@ -3693,7 +3721,9 @@ textarea.form-control-lg {
 [data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:hover ,
 [data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:active,
 [data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:focus,
-[data-theme-version=dark][data-primary=color_2]  .fixChart_SideMenu .moreright-btn:hover .dropdown-toggle::after {
+[data-theme-version=dark][data-primary=color_2]  .fixChart_SideMenu .moreright-btn:hover .dropdown-toggle::after ,
+[data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.isselected .dropdown-toggle::after ,
+[data-theme-version=dark][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.isselected  .dropdown-toggle {
   background-color: var(--color-DisableBtn);
   --button-bg:var(--color-DisableBtn);
   --primary-hover:var(--color-DisableBtn);
@@ -3709,7 +3739,7 @@ textarea.form-control-lg {
   content:"\e9b6";
 }
 
-.dropend.moreright-btn .dropdown-toggle::after{
+.fixChart_SideMenu .moreright-btn .dropdown-toggle::after{
   border:0;
   margin:0;
   transform:unset;
@@ -3718,10 +3748,12 @@ textarea.form-control-lg {
   font-family: 'trade-icon' !important;
   content:"\e9b6";
   transform: rotate(270deg);
-
+  transition: 0.3s all cubic-bezier(0.65, 0.05, 0.36, 1);
 }
 
-
+.fixChart_SideMenu .moreright-btn.show .dropdown-toggle.btn::after {
+  transform: rotate(90deg);
+}
 
 .dropdown-divider-side  {
   height: 22px;

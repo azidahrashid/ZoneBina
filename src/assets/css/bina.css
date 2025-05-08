@@ -4692,12 +4692,22 @@ left: 0;
 
 .fixChart_SideMenu {
     display: inline-flex; 
-    height: calc(100% - 82px);
+    height: calc(100% - 81px);
     position: absolute;
     z-index: 9;
     border-radius: 0 5px 5px 0;
     margin-right: 5px;
+    border-left: 0;
+    border-bottom: 0;
 }
+[data-theme-version=dark][data-headerbg=color_2] .fixChart_SideMenu {
+    background-color:#181A20 ;
+  }
+
+[data-theme-version=light][data-headerbg=color_2] .fixChart_SideMenu {
+    background-color:#fff ;
+  }
+
 
 .icondrop_menu .dropdown-menu .dropdown-item .star_icon{
     opacity:0;
@@ -4801,7 +4811,7 @@ left: 0;
     opacity:0;
 
 }
-.fixChart_SideMenu .moreright-btn:hover .dropdown-toggle::after{
+.fixChart_SideMenu .moreright-btn:hover .dropdown-toggle::after  {
     opacity:1;
 
 }
