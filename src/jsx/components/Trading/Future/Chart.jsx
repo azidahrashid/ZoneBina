@@ -6,12 +6,7 @@ import {
   DropdownButton,
 } from "react-bootstrap";
 
-import loadable from "@loadable/component";
-import pMinDelay from "p-min-delay";
 
-const BitCoinChart = loadable(() =>
-  pMinDelay(import("../../Crypto/Coin/BitCoinChart"), 1000)
-);
 
 // Updated menu structure with sections and items
 const SIDEBAR_MENU1 = [
@@ -310,6 +305,8 @@ const ChartSideMenu = () => {
     // Set the active dropdown ID
     setActiveDropdownId(dropdownId);
     updateDropdownIconAndClass(dropdownId); 
+    setActiveDropdownId(dropdownId);
+
   };
 
   const handleSelectItem = (dropdownId, item) => {
@@ -329,10 +326,14 @@ const ChartSideMenu = () => {
     // Set active dropdown ID
     setActiveDropdownId(dropdownId);
     updateDropdownIconAndClass(dropdownId); 
+    setActiveDropdownId(dropdownId);
+    setActiveItemId(item.id);
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
+      if (!dropdownRef?.current) return;
+
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownState((prevState) =>
           Object.keys(prevState).reduce((acc, key) => {
@@ -346,6 +347,12 @@ const ChartSideMenu = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+
+
+
+  const [activeItemId, setActiveItemId] = useState(null);
+
+
   return (
     <>
 
@@ -353,16 +360,20 @@ const ChartSideMenu = () => {
 
 
        {/* chart area */}
-        <div className="fixChart_SideChart border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] py-2">
+        <div className="fixChart_SideChart border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] ">
                 <div className="bn-flex justify-content-center mx-1 coinchart flex-column">
-                  <BitCoinChart /> 
+                   <div id="CoinChartContainer" className="w-full aspect-[16/9]">
+                        <div>
+                           {/* Place your chart here */}
+                        </div>
+                    </div>
               </div>         
         </div> 
 
 
 
         {/* side menu area */}
-        <div className="fixChart_SideMenu border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] py-2">
+        <div className="fixChart_SideMenu border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] ">
         <div className="d-grid grid-cols-[auto_min-content] align-items-start h-full">
           <div className="d-flex align-items-center relative mr-[24px]">
 
@@ -371,78 +382,86 @@ const ChartSideMenu = () => {
               <div className="d-flex align-items-center gap-[--space-m]">
                 <div className="!ml-[0px]">
                   <div className="bn-flex">
-                   
-
                   <div className="bn-flex justify-content-center mx-1 icondrop_menu flex-column">
-  {Object.keys(SIDEBAR_MENUS).map((dropdownId) => {
-    const menuSections = SIDEBAR_MENUS[dropdownId];
-    // const isSelected = dropdownState[dropdownId]?.isSelected;
-    const isActive = dropdownState[dropdownId]?.active;
-    const selectedItem = localStorage.getItem(`selectedChartType${dropdownId}`);
+                      {Object.keys(SIDEBAR_MENUS).map((dropdownId) => {
+                        const menuSections = SIDEBAR_MENUS[dropdownId];
+                        // const isSelected = dropdownState[dropdownId]?.isSelected;
+                        const isActive = dropdownState[dropdownId]?.active;
+                        const selectedItem = localStorage.getItem(`selectedChartType${dropdownId}`);
+                        
 
-    return (
-      <React.Fragment key={dropdownId}>
-        <DropdownButton
-        align={{lg: 'end'}}
-        drop="end"
-        variant=""
-          as={ButtonGroup}
-          title={
-            <span
-              className={`font-i-side trade_icon ${
-                menuSections
-                  .flatMap((s) => s.items)
-                  .find((item) => item.id.toString() === selectedItem)?.iconClass ||
-                menuSections[0].items[0].iconClass
-              }`}
-            />
-          }
-          className={`dropdown-toggle-btn-${dropdownId} moreright-btn bn-flex justify-content-between ${
-            activeDropdownId === parseInt(dropdownId) ? "isselected" : ""
-          }`}
-          show={isActive}
-          onClick={() => handleDropdownClick(parseInt(dropdownId))}
-        >
-          {menuSections.map((section) => (
-            <React.Fragment key={section.section}>
-              <div className="px-3 py-2 text-muted text-sm dropitem_subsection_title">
-                {section.section}
-              </div>
-              {section.items.map((item) => (
-                <Dropdown.Item
-                  key={item.id}
-                  onClick={() => handleSelectItem(parseInt(dropdownId), item)}
-                >
-                  <div className="bn-flex justify-content-between align-items-center">
-                    <span className={`font-i-side trade_icon d-flextrade_icon ${item.iconClass}`}>
-                      {item.label}
-                    </span>
-                  </div>
-                </Dropdown.Item>
-              ))}
-              <div className="dropdown-divider"></div>
-            </React.Fragment>
-          ))}
-        </DropdownButton>
+                        return (
+                          <React.Fragment key={dropdownId}>
+                            <DropdownButton
+                            align={{lg: 'end'}}
+                            drop="end"
+                            variant=""
+                              as={ButtonGroup}
+                              title={
+                                <span
+                                  className={`font-i-side trade_icon ${
+                                    menuSections
+                                      .flatMap((s) => s.items)
+                                      .find((item) => item.id.toString() === selectedItem)?.iconClass ||
+                                    menuSections[0].items[0].iconClass
+                                  }`}
+                                />
+                              }
+                              className={`dropdown-toggle-btn-${dropdownId} moreright-btn bn-flex justify-content-between ${
+                                activeDropdownId === parseInt(dropdownId) ? "isselected" : ""
+                              }`}
+                              show={isActive}
+                              onClick={() => handleDropdownClick(parseInt(dropdownId))}
+                              ref={dropdownRef} 
+                            >
 
-        {/* Inserted Divider and Buttons After dropdown Menu 7 */}
-        {parseInt(dropdownId) === 7 && (
-          <>
-            <div className="dropdown-divider"></div>
-            <Button className="moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton">
-              <span className="font-i-side trade_icon tradeicon-ticon_7" />
-            </Button>
+                              {menuSections.map((section) => (
+                                <React.Fragment key={section.section}>
+                                  <div className="px-3 py-2 text-muted text-sm dropitem_subsection_title">
+                                    {section.section}
+                                  </div>
+                                  {section.items.map((item) => (
+                                    <Dropdown.Item
+                                      key={item.id}
+                                      onClick={() => handleSelectItem(parseInt(dropdownId), item)}
+                                      active={localStorage.getItem(`selectedChartType${dropdownId}`) === item.id.toString()}
+                                      className={
+                                        // Apply "isselected" class only for the currently selected item in the active dropdown
+                                        activeDropdownId === dropdownId && activeItemId === item.id
+                                          ? 'isselected'
+                                          : ''
+                                      }
+                                    >
+                                      <div className="bn-flex justify-content-between align-items-center">
+                                        <span className={`font-i-side trade_icon d-flextrade_icon ${item.iconClass}`}>
+                                          {item.label}
+                                        </span>
+                                      </div>
+                                    </Dropdown.Item>
+                                  ))}
+                                  <div className="dropdown-divider"></div>
+                                </React.Fragment>
+                              ))}
+                            </DropdownButton>
 
-            <Button className="moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton">
-              <span className="font-i-side trade_icon tradeicon-ticon_8" />
-            </Button>
-            <div className="dropdown-divider"></div>
-          </>
-        )}
-      </React.Fragment>
-    );
-  })}
-</div>
+                            {/* Inserted Divider and Buttons After dropdown Menu 7 */}
+                            {parseInt(dropdownId) === 7 && (
+                              <>
+                                <div className="dropdown-divider"></div>
+                                <Button className="moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton">
+                                  <span className="font-i-side trade_icon tradeicon-ticon_7" />
+                                </Button>
+
+                                <Button className="moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton">
+                                  <span className="font-i-side trade_icon tradeicon-ticon_8" />
+                                </Button>
+                                <div className="dropdown-divider"></div>
+                              </>
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
+                    </div>
 
                   </div>
                 </div>

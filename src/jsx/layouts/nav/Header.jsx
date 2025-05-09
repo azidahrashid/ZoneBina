@@ -222,10 +222,10 @@ const Header = ({ onNote }) => {
 											<span className="fs-16 text-Buy text-headline1">96,789.1</span>
 											<p className="mb-0 fs-12 text-Buy"><span className="me-2">2.03%</span></p>
 										</div>
-										<div className="t-subheadline1 relative-ticker box-el subheadline1-first">
+										{/* <div className="t-subheadline1 relative-ticker box-el subheadline1-first">
 											<span className="fs-12">시장가</span>
 											<p className="mb-0 fs-12 text-black">3.219</p>
-										</div>
+										</div> */}
 									</div>
 									<div className="t-subheadline-wrapper">
 										<div className="t-subheadline1 relative-ticker box-el">

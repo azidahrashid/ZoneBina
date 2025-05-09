@@ -3662,7 +3662,9 @@ textarea.form-control-lg {
   justify-content: center;
   align-items: center;
 }
-
+.fixChart_SideMenu .moreright-btn .dropdown-toggle.btn {
+  padding: 10px 3px;margin:2px 0;
+}
 [data-theme-version=dark][data-headerbg=color_2]  .dropdown.moredown-btn .dropdown-toggle.btn ,
 [data-theme-version=dark][data-headerbg=color_2] .fixChart_SideMenu .moreright-btn .dropdown-toggle.btn ,
 [data-theme-version=dark][data-headerbg=color_2] .moreright-btn.nonDropdownButton{
@@ -3674,7 +3676,7 @@ color:#828690;
 [data-theme-version=light][data-headerbg=color_2]  .dropdown.moredown-btn .dropdown-toggle.btn ,
 [data-theme-version=light][data-headerbg=color_2] .fixChart_SideMenu .moreright-btn .dropdown-toggle.btn ,
 [data-theme-version=light][data-headerbg=color_2] .moreright-btn.nonDropdownButton{
-    color:#828690;
+    color:#000000;
     --button-color: #000;
 }
 
@@ -3701,6 +3703,9 @@ color:#828690;
   margin-left: 0.7rem;
 }
 
+[data-theme-version=light] .fixChart_SideMenu .dropdown-menu .dropdown-item {color:black !important;}
+[data-theme-version=dark] .fixChart_SideMenu .dropdown-menu .dropdown-item {color:white !important;}
+
 
 [data-theme-version=light][data-primary=color_2]  .dropdown-toggle.btn:hover ,
 [data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.active .dropdown-toggle,  
@@ -3710,9 +3715,9 @@ color:#828690;
 [data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn:hover .dropdown-toggle::after ,
 [data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.isselected .dropdown-toggle::after ,
 [data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.isselected  .dropdown-toggle {
- background-color: #f2f2f2;
- --button-bg:#f2f2f2;
- --primary-hover:#f2f2f2;
+ background-color: #ebebeb;
+ --button-bg:#ebebeb;
+ --primary-hover:#ebebeb;
 }
 
 
@@ -35291,6 +35296,7 @@ table.dataTable thead .sorting_asc {
     background: none;
     padding: 0;
     align-items: center;
+    box-shadow: none;
   }
   .dz-side-menu .sidebar-social-link > ul {
     display: flex;
@@ -42887,6 +42893,7 @@ html[dir=rtl] [direction=rtl][data-sidebar-style=compact]:not([data-layout=horiz
 
 [data-theme-version=dark] .nav-header {
   border-color: #2B3139;
+  box-shadow: 0 0 2px #323943;
 }
 [data-theme-version=dark] .nav-control svg rect {
   fill: #fff;
