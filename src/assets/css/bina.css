@@ -5138,7 +5138,7 @@
       }
     
       .future_tradeStatus_section {
-        margin-top: 30px;
+        /* margin-top: 30px; */
       }
 
 
@@ -5172,6 +5172,7 @@
     }
     .fixChart_SideMenu ,    .chart_container_ .fixChart_SideChart #CoinChartContainer>*  {
         height:calc(100vh - 343px - 18vh);
+        min-height: 492px;
     }
     .future_main_section .card-body {
         padding: 0;
