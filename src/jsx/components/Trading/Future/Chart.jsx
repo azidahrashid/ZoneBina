@@ -8,7 +8,7 @@ import {
 
 
 
-// Updated menu structure with sections and items
+// Menu structure for each section of the sidebar, each section contains a list of items
 const SIDEBAR_MENU1 = [
   {
     section: "기본",
@@ -225,7 +225,8 @@ const SIDEBAR_MENU8 = [
   },
 ];
 
-// List of all menus
+
+// Combining all the menus into a single object for easier management and reference
 const SIDEBAR_MENUS = {
   1: SIDEBAR_MENU1,
   2: SIDEBAR_MENU2,
@@ -237,7 +238,10 @@ const SIDEBAR_MENUS = {
   8: SIDEBAR_MENU8,
 };
 
+
+
 const ChartSideMenu = () => {
+  // State to manage the active dropdown menu and selection
   const [dropdownState, setDropdownState] = useState({
     1: { clickCount: 0, isSelected: false, active: false },
     2: { clickCount: 0, isSelected: false, active: false },
@@ -273,14 +277,18 @@ const ChartSideMenu = () => {
   };
 
 
+  //Tracks which dropdown is currently active
   const [activeDropdownId, setActiveDropdownId] = useState(null);
 
 
+  // Handles the click event for dropdowns (toggles visibility)
   const handleDropdownClick = (dropdownId) => {
     setDropdownState((prevState) => {
       const current = prevState[dropdownId];
-      const clickCount = (current.clickCount + 1) % 3;
+      const clickCount = (current.clickCount + 1) % 3;// Toggle between 3 states (clicked, active, inactive)
   
+
+      // Reset the state of other dropdowns
       const newState = {
         ...prevState,
         [dropdownId]: {
@@ -309,9 +317,16 @@ const ChartSideMenu = () => {
 
   };
 
+
+
+
+
+  // Handles the selection of a chart item within a dropdown
   const handleSelectItem = (dropdownId, item) => {
     localStorage.setItem(`selectedChartType${dropdownId}`, item.id);
     setDropdownState((prevState) => {
+
+      // Update state to highlight the selected item and deactivate the dropdown
       const newState = Object.keys(prevState).reduce((acc, key) => {
         acc[key] = {
           ...prevState[key],
@@ -337,7 +352,7 @@ const ChartSideMenu = () => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownState((prevState) =>
           Object.keys(prevState).reduce((acc, key) => {
-            acc[key] = { ...prevState[key], active: false };
+            acc[key] = { ...prevState[key], active: false };// Deactivate all dropdowns
             return acc;
           }, {})
         );
