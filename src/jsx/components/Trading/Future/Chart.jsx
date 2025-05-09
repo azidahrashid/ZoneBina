@@ -427,7 +427,7 @@ const ChartSideMenu = () => {
                               }`}
                               show={isActive}
                               onClick={() => handleDropdownClick(parseInt(dropdownId))}
-                              ref={dropdownRef} 
+                             
                             >
 
                               {menuSections.map((section) => (
