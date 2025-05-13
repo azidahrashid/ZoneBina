@@ -313,7 +313,7 @@ const ChartSideMenu = () => {
     // Set the active dropdown ID
     setActiveDropdownId(dropdownId);
     updateDropdownIconAndClass(dropdownId); 
-    setActiveDropdownId(dropdownId);
+   
 
   };
 
@@ -341,23 +341,21 @@ const ChartSideMenu = () => {
     // Set active dropdown ID
     setActiveDropdownId(dropdownId);
     updateDropdownIconAndClass(dropdownId); 
-    setActiveDropdownId(dropdownId);
     setActiveItemId(item.id);
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!dropdownRef?.current) return;
-
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownState((prevState) =>
           Object.keys(prevState).reduce((acc, key) => {
-            acc[key] = { ...prevState[key], active: false };// Deactivate all dropdowns
+            acc[key] = { ...prevState[key], active: false }; // Tutup dropdown
             return acc;
           }, {})
         );
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
@@ -388,7 +386,7 @@ const ChartSideMenu = () => {
 
 
         {/* side menu area */}
-        <div className="fixChart_SideMenu border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] ">
+        <div className="fixChart_SideMenu border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] "  ref={dropdownRef} >
         <div className="d-grid grid-cols-[auto_min-content] align-items-start h-full">
           <div className="d-flex align-items-center relative mr-[24px]">
 
