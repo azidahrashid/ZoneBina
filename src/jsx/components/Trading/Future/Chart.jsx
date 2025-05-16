@@ -282,7 +282,7 @@ const ChartSideMenu = () => {
 
 
   // Handles the click event for dropdowns (toggles visibility)
-  const handleDropdownClick = (dropdownId) => {
+  const handleDropdownClick = (dropdownId, isTostich = false) => {
     setDropdownState((prevState) => {
       const newState = {};
   
@@ -301,6 +301,14 @@ const ChartSideMenu = () => {
             active: false,
           };
         }
+
+        if (isTostich) {
+            setActiveTostichId(prev => (prev === dropdownId ? null : dropdownId));
+          } else {
+            setActiveDropdownId(prev => (prev === dropdownId ? null : dropdownId));
+            setActiveTostichId(null); // Reset tostich when dropdown is clicked
+          }
+
       });
   
       return newState;
