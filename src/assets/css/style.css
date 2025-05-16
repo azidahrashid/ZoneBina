@@ -3700,7 +3700,7 @@ color:#828690;
 }
 
 .fixChart_SideMenu .moreright-btn .dropdown-menu[data-bs-popper] {
-  margin-left: 0.7rem;
+  margin-left: 1.45rem;
 }
 
 [data-theme-version=light] .fixChart_SideMenu .dropdown-menu .dropdown-item {color:black !important;}

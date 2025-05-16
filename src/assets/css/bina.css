@@ -4196,14 +4196,15 @@
     font-size: 23px;
   }
   .fixChart_SideMenu .font-i-side-xs:before {
-    font-size: 0.5rem;
+    font-size: 1rem;
 }
   .fixChart_SideMenu .moreright-btn .dropdown-toggle .arrow_image {
     position: absolute;
-    right: -15px;
+    right: -23px;
     padding: 2px 5px;
     border-radius: 3px;
     opacity: 0;
+    z-index: 9;
   }
   .fixChart_SideMenu .moreright-btn:hover .dropdown-toggle .arrow_image {
     opacity: 1;
