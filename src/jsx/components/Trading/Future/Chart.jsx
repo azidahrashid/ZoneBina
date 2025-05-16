@@ -284,39 +284,32 @@ const ChartSideMenu = () => {
   // Handles the click event for dropdowns (toggles visibility)
   const handleDropdownClick = (dropdownId) => {
     setDropdownState((prevState) => {
-      const current = prevState[dropdownId];
-      const clickCount = (current.clickCount + 1) % 3;// Toggle between 3 states (clicked, active, inactive)
+      const newState = {};
   
-
-      // Reset the state of other dropdowns
-      const newState = {
-        ...prevState,
-        [dropdownId]: {
-          ...current,
-          clickCount,
-          active: clickCount === 2,
-          // isSelected: clickCount > 0,
-        },
-      };
-  
-      Object.keys(newState).forEach((key) => {
-        if (parseInt(key) !== dropdownId) {
-          newState[key].clickCount = 0;
-          newState[key].active = false;
-          newState[key].isSelected = false; // Ensure others are deselected
+      Object.keys(prevState).forEach((key) => {
+        const keyNum = parseInt(key);
+        if (keyNum === dropdownId) {
+          // Toggle active for clicked dropdown
+          newState[key] = {
+            ...prevState[key],
+            active: !prevState[key].active,
+          };
+        } else {
+          // Close all other dropdowns
+          newState[key] = {
+            ...prevState[key],
+            active: false,
+          };
         }
       });
   
       return newState;
     });
-  
-    // Set the active dropdown ID
+    
+    // Update active dropdown ID for styling if needed
     setActiveDropdownId(dropdownId);
-    updateDropdownIconAndClass(dropdownId); 
-   
-
+    updateDropdownIconAndClass(dropdownId);
   };
-
 
 
 
@@ -325,24 +318,25 @@ const ChartSideMenu = () => {
   const handleSelectItem = (dropdownId, item) => {
     localStorage.setItem(`selectedChartType${dropdownId}`, item.id);
     setDropdownState((prevState) => {
-
-      // Update state to highlight the selected item and deactivate the dropdown
-      const newState = Object.keys(prevState).reduce((acc, key) => {
-        acc[key] = {
+      const newState = {};
+  
+      Object.keys(prevState).forEach((key) => {
+        const keyNum = parseInt(key);
+        newState[key] = {
           ...prevState[key],
-          isSelected: parseInt(key) === dropdownId,
+          isSelected: keyNum === dropdownId,
           active: false,
         };
-        return acc;
-      }, {});
+      });
+  
       return newState;
     });
   
-    // Set active dropdown ID
     setActiveDropdownId(dropdownId);
-    updateDropdownIconAndClass(dropdownId); 
+    updateDropdownIconAndClass(dropdownId);
     setActiveItemId(item.id);
   };
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -364,6 +358,12 @@ const ChartSideMenu = () => {
 
 
   const [activeItemId, setActiveItemId] = useState(null);
+ const [activeTostichId, setActiveTostichId] = useState(null);
+
+
+const handleToStichClick = (id) => {
+  setActiveTostichId(prev => prev === id ? null : id);
+};
 
 
   return (
@@ -411,21 +411,35 @@ const ChartSideMenu = () => {
                             variant=""
                               as={ButtonGroup}
                               title={
-                                <span
-                                  className={`font-i-side trade_icon ${
-                                    menuSections
-                                      .flatMap((s) => s.items)
-                                      .find((item) => item.id.toString() === selectedItem)?.iconClass ||
-                                    menuSections[0].items[0].iconClass
-                                  }`}
-                                />
-                              }
-                              className={`dropdown-toggle-btn-${dropdownId} moreright-btn bn-flex justify-content-between ${
-                                activeDropdownId === parseInt(dropdownId) ? "isselected" : ""
-                              }`}
-                              show={isActive}
-                              onClick={() => handleDropdownClick(parseInt(dropdownId))}
-                             
+                                <>
+                                      <span
+                                        className={`font-i-side trade_icon tostich ${activeTostichId === dropdownId ? "btnON_using" : ""} ${
+                                          menuSections
+                                            .flatMap((s) => s.items)
+                                            .find((item) => item.id.toString() === selectedItem)?.iconClass ||
+                                          menuSections[0].items[0].iconClass
+                                        }`}
+
+                                        onClick={() => handleToStichClick(dropdownId)}
+                                      />
+                                      <span
+                                      className="font-i-side-xs trade_icon tradeicon-ticon_182 too_gle_sidesubmenu arrow_image"  // Toggle submenu only when clicking this
+                                      onClick={() => handleDropdownClick(parseInt(dropdownId))} 
+                                      />
+                                
+                                  </>
+                               }
+                              className={`dropdown-toggle-btn-${dropdownId} moreright-btn bn-flex justify-content-between ${activeDropdownId === parseInt(dropdownId) ? "isselected btnON_using" : ""} ${activeTostichId === dropdownId ? "btnON_using" : ""}`}
+
+                               show={isActive}
+                              // onClick={() => handleDropdownClick(parseInt(dropdownId))}
+                            
+                                onClick={(e) => {
+                                e.stopPropagation(); // Stop click events here so clicking the icon DOES NOT toggle submenu                       
+                                // Remove btnON_using from all elements
+                                document.querySelectorAll(".btnON_using").forEach((el) => el.classList.remove("btnON_using"));
+                      
+                              }} 
                             >
 
                               {menuSections.map((section) => (
@@ -461,16 +475,23 @@ const ChartSideMenu = () => {
                             {parseInt(dropdownId) === 7 && (
                               <>
                                 <div className="dropdown-divider"></div>
-                                <Button className="moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton">
+                                <Button 
+                                  className={`moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton tostich ${activeTostichId === '7_1' ? "btnON_using" : ""}`}
+                                  onClick={() => handleToStichClick('7_1')}
+                                >
                                   <span className="font-i-side trade_icon tradeicon-ticon_7" />
                                 </Button>
 
-                                <Button className="moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton">
+                                <Button 
+                                  className={`moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton tostich ${activeTostichId === '7_2' ? "btnON_using" : ""}`}
+                                  onClick={() => handleToStichClick('7_2')}
+                                >
                                   <span className="font-i-side trade_icon tradeicon-ticon_8" />
                                 </Button>
                                 <div className="dropdown-divider"></div>
                               </>
                             )}
+
                           </React.Fragment>
                         );
                       })}
