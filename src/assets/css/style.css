@@ -3735,6 +3735,23 @@ color:#828690;
   --primary-hover:var(--color-DisableBtn);
 }
 
+
+@media (max-width:768px) {
+  [data-theme-version=light][data-primary=color_2]  .dropdown-toggle.btn:hover , 
+[data-theme-version=light][data-primary=color_2]  .nonDropdownButton:hover ,
+[data-theme-version=light][data-primary=color_2] .nonDropdownButton:active,
+[data-theme-version=light][data-primary=color_2]  .nonDropdownButton:focus ,
+[data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:hover ,
+[data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:active,
+[data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:focus,
+  [data-theme-version=dark][data-primary=color_2]  .dropdown-toggle.btn:hover {
+      background-color:unset;
+  --button-bg:unset;
+  --primary-hover:unset;
+  }
+}
+
+
 .dropdown.moredown-btn .dropdown-toggle::after{
   border:0;
   margin:0;
