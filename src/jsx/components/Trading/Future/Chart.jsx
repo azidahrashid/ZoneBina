@@ -260,24 +260,7 @@ const ChartSideMenu = () => {
   const [activeDropdownId, setActiveDropdownId] = useState(null);
   const [activeItemId, setActiveItemId] = useState(null);
 
-  // Fungsi update localStorage & icon class jika perlu (ambil dari asal)
-  // const updateDropdownIconAndClass = (dropdownId) => {
-  //   const selectedItem = localStorage.getItem(`selectedChartType${dropdownId}`);
-  //   const dropdownButton = document.querySelector(`.dropdown-toggle-btn-${dropdownId}`);
 
-  //   if (dropdownButton) {
-  //     const menuSections = SIDEBAR_MENUS[dropdownId];
-  //     const selectedIconClass =
-  //       menuSections.flatMap((s) => s.items).find((item) => item.id.toString() === selectedItem)?.iconClass ||
-  //       menuSections[0].items[0].iconClass;
-
-  //     dropdownButton.className = `dropdown-toggle-btn-${dropdownId} moreright-btn bn-flex justify-content-between ${
-  //       selectedItem ? "isactive" : ""
-  //     }`;
-
-  //     dropdownButton.querySelector("span").className = `font-i-side trade_icon ${selectedIconClass}`;
-  //   }
-  // };
 
   // Toggle dropdown submenu open/close
   const handleDropdownClick = (dropdownId) => {
@@ -382,6 +365,10 @@ const ChartSideMenu = () => {
                         const isActive = dropdownState[dropdownId]?.active;
                         const selectedItem = localStorage.getItem(`selectedChartType${dropdownId}`);
 
+                        // detect touch devices and use only one or the other
+                        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+                        
                         return (
                           <React.Fragment key={dropdownId}>
                             <DropdownButton
@@ -400,7 +387,11 @@ const ChartSideMenu = () => {
                                         .find((item) => item.id.toString() === selectedItem)?.iconClass ||
                                       menuSections[0].items[0].iconClass
                                     }`}
-                                    onClick={() => handleTostichClick(dropdownId)}
+                                    onClick={!isTouchDevice ? () => handleTostichClick(dropdownId) : undefined}
+
+                                    // Handle touch event to call handleTostichClick right when user touches the element,
+                                    // improving responsiveness on mobile devices by bypassing the usual click delay
+                                    onTouchStart={isTouchDevice ? () => handleTostichClick(dropdownId) : undefined}
                                   />
                                   <span
                                     className="font-i-side-xs trade_icon tradeicon-ticon_182 too_gle_sidesubmenu arrow_image"

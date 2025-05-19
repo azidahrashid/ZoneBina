@@ -4198,6 +4198,13 @@
   .fixChart_SideMenu .font-i-side-xs:before {
     font-size: 1rem;
 }
+
+ .fixChart_SideMenu .moreright-btn  {
+    touch-action: manipulation; /* Helps reduce delay on mobile */
+  -webkit-tap-highlight-color: transparent; /* Removes tap highlight */
+  user-select: none;
+ }
+
   .fixChart_SideMenu .moreright-btn .dropdown-toggle .arrow_image {
     position: absolute;
     right: -23px;
