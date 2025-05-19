@@ -3663,7 +3663,7 @@ textarea.form-control-lg {
   align-items: center;
 }
 .fixChart_SideMenu .moreright-btn .dropdown-toggle.btn {
-  padding: 10px 3px;margin:2px 0;
+  padding: 0;margin:2px 0; height:35px;
 }
 [data-theme-version=dark][data-headerbg=color_2]  .dropdown.moredown-btn .dropdown-toggle.btn ,
 [data-theme-version=dark][data-headerbg=color_2] .fixChart_SideMenu .moreright-btn .dropdown-toggle.btn ,
@@ -3726,6 +3726,7 @@ color:#828690;
 [data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:hover ,
 [data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:active,
 [data-theme-version=dark][data-primary=color_2]  .nonDropdownButton:focus,
+[data-theme-version=dark][data-primary=color_2]  .nonDropdownButton.btnON_using ,
 [data-theme-version=dark][data-primary=color_2]  .fixChart_SideMenu .moreright-btn:hover .dropdown-toggle .arrow_image ,
 [data-theme-version=light][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.btnON_using .dropdown-toggle .arrow_image ,
 [data-theme-version=dark][data-primary=color_2]  .fixChart_SideMenu .moreright-btn.btnON_using  .dropdown-toggle {

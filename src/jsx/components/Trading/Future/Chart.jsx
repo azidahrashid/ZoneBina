@@ -261,23 +261,23 @@ const ChartSideMenu = () => {
   const [activeItemId, setActiveItemId] = useState(null);
 
   // Fungsi update localStorage & icon class jika perlu (ambil dari asal)
-  const updateDropdownIconAndClass = (dropdownId) => {
-    const selectedItem = localStorage.getItem(`selectedChartType${dropdownId}`);
-    const dropdownButton = document.querySelector(`.dropdown-toggle-btn-${dropdownId}`);
+  // const updateDropdownIconAndClass = (dropdownId) => {
+  //   const selectedItem = localStorage.getItem(`selectedChartType${dropdownId}`);
+  //   const dropdownButton = document.querySelector(`.dropdown-toggle-btn-${dropdownId}`);
 
-    if (dropdownButton) {
-      const menuSections = SIDEBAR_MENUS[dropdownId];
-      const selectedIconClass =
-        menuSections.flatMap((s) => s.items).find((item) => item.id.toString() === selectedItem)?.iconClass ||
-        menuSections[0].items[0].iconClass;
+  //   if (dropdownButton) {
+  //     const menuSections = SIDEBAR_MENUS[dropdownId];
+  //     const selectedIconClass =
+  //       menuSections.flatMap((s) => s.items).find((item) => item.id.toString() === selectedItem)?.iconClass ||
+  //       menuSections[0].items[0].iconClass;
 
-      dropdownButton.className = `dropdown-toggle-btn-${dropdownId} moreright-btn bn-flex justify-content-between ${
-        selectedItem ? "isactive" : ""
-      }`;
+  //     dropdownButton.className = `dropdown-toggle-btn-${dropdownId} moreright-btn bn-flex justify-content-between ${
+  //       selectedItem ? "isactive" : ""
+  //     }`;
 
-      dropdownButton.querySelector("span").className = `font-i-side trade_icon ${selectedIconClass}`;
-    }
-  };
+  //     dropdownButton.querySelector("span").className = `font-i-side trade_icon ${selectedIconClass}`;
+  //   }
+  // };
 
   // Toggle dropdown submenu open/close
   const handleDropdownClick = (dropdownId) => {
@@ -393,7 +393,7 @@ const ChartSideMenu = () => {
                                 <>
                                   <span
                                     className={`font-i-side trade_icon tostich moreright-btn ${
-                                      activeMorerightId === dropdownId.toString() ? "btnON_using" : ""
+                                      activeMorerightId === dropdownId.toString() ? "btnON_" : ""
                                     } ${
                                       menuSections
                                         .flatMap((s) => s.items)
