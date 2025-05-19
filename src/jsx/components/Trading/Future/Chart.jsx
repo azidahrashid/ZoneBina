@@ -278,60 +278,61 @@ const ChartSideMenu = () => {
 
     setActiveDropdownId((prev) => (prev === dropdownId ? null : dropdownId));
 
-    // **Important**: Jangan reset activeMorerightId bila toggle submenu, sebab nak kekalkan btnON_using
-    // Jadi jangan setActiveMorerightId di sini
+    // **Important**: to keep btnON_using active
+
   };
 
-  // Pilih item submenu
-  const handleSelectItem = (dropdownId, item) => {
-    localStorage.setItem(`selectedChartType${dropdownId}`, item.id);
+  // Select submenu item
+const handleSelectItem = (dropdownId, item) => {
+  localStorage.setItem(`selectedChartType${dropdownId}`, item.id);
 
-    setDropdownState((prevState) => {
-      const newState = {};
-      Object.keys(prevState).forEach((key) => {
-        const keyNum = parseInt(key);
-        newState[key] = {
-          ...prevState[key],
-          isSelected: keyNum === dropdownId,
-          active: false,
-        };
-      });
-      return newState;
+  setDropdownState((prevState) => {
+    const newState = {};
+    Object.keys(prevState).forEach((key) => {
+      const keyNum = parseInt(key);
+      newState[key] = {
+        ...prevState[key],
+        isSelected: keyNum === dropdownId,
+        active: false,
+      };
     });
+    return newState;
+  });
 
-    setActiveDropdownId(null); // Tutup dropdown selepas pilih item
-    setActiveItemId(item.id);
+  setActiveDropdownId(null); // Close dropdown after selecting item
+  setActiveItemId(item.id);
 
-    // Kekalkan btnON_using pada moreright-btn dropdownId yang sama
-    setActiveMorerightId(dropdownId.toString());
-  };
+  // Keep btnON_using active on moreright-btn with the same dropdownId
+  setActiveMorerightId(dropdownId.toString());
+};
 
-  // Klik pada icon tostich (moreright-btn) — tukar btnON_using ke icon yang ditekan
-  const handleTostichClick = (id) => {
-    // Tukar activeMorerightId ke id yang ditekan
-    setActiveMorerightId(id.toString());
+// Click on tostich icon (moreright-btn) — toggle btnON_using on the clicked icon
+const handleTostichClick = (id) => {
+  // Change activeMorerightId to the clicked id
+  setActiveMorerightId(id.toString());
 
-    // Tutup semua dropdown kecuali kalau id ini adalah dropdown utama (number)
-    if (!id.toString().includes("_")) {
-      // Kalau klik moreright-btn utama (dropdown)
-      setActiveDropdownId((prev) => (prev === Number(id) ? null : Number(id)));
-    } else {
-      // Kalau klik ikon sub (contoh: "7_1", "7_2"), jangan ubah dropdown state
+  // Close all dropdowns except if id is a main dropdown (number)
+  if (!id.toString().includes("_")) {
+    // If clicked on main moreright-btn (dropdown)
+    setActiveDropdownId((prev) => (prev === Number(id) ? null : Number(id)));
+  } else {
+    // If clicked on sub icon (e.g. "7_1", "7_2"), do not change dropdown state
+  }
+};
+
+// Click outside dropdown — close all dropdowns
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownState((prevState) =>
+        Object.keys(prevState).reduce((acc, key) => {
+          acc[key] = { ...prevState[key], active: false };
+          return acc;
+        }, {})
+      );
     }
   };
 
-  // Klik luar dropdown — tutup semua dropdown
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownState((prevState) =>
-          Object.keys(prevState).reduce((acc, key) => {
-            acc[key] = { ...prevState[key], active: false };
-            return acc;
-          }, {})
-        );
-      }
-    };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
