@@ -450,7 +450,10 @@ useEffect(() => {
                                   className={`moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton tostich ${
                                     activeMorerightId === "7_1" ? "btnON_using" : ""
                                   }`}
-                                  onClick={() => handleTostichClick("7_1")}
+                                  onClick={!isTouchDevice ? () => handleTostichClick("7_1"): undefined}
+                                  onTouchStart={!isTouchDevice ? () => handleTostichClick("7_1"): undefined}
+
+                                  
                                 >
                                   <span className="font-i-side trade_icon tradeicon-ticon_7" />
                                 </Button>
@@ -460,6 +463,7 @@ useEffect(() => {
                                     activeMorerightId === "7_2" ? "btnON_using" : ""
                                   }`}
                                   onClick={() => handleTostichClick("7_2")}
+                                  onTouchStart={() => handleTostichClick("7_2")}
                                 >
                                   <span className="font-i-side trade_icon tradeicon-ticon_8" />
                                 </Button>
