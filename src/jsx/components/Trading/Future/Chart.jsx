@@ -182,7 +182,7 @@ const SIDEBAR_MENU6 = [
         { id: 7, iconClass: "tradeicon-ticon_37", label: "네모" },
         { id: 8, iconClass: "tradeicon-ticon_38", label: "회전네모" },
         { id: 9, iconClass: "tradeicon-ticon_39", label: "경로" },
-        { id: 10, iconClass: "tradeicon-ticon_40", label: "서클" },
+        { id: 10, iconClass: "tradeicon-ticon_6", label: "서클" },
         { id: 11, iconClass: "tradeicon-ticon_41", label: "타원" },
         { id: 12, iconClass: "tradeicon-ticon_42", label: "다선형" },
         { id: 13, iconClass: "tradeicon-ticon_43", label: "세모" },
@@ -227,6 +227,7 @@ const SIDEBAR_MENU8 = [
 
 
 // Combining all the menus into a single object for easier management and reference
+
 const SIDEBAR_MENUS = {
   1: SIDEBAR_MENU1,
   2: SIDEBAR_MENU2,
@@ -238,26 +239,28 @@ const SIDEBAR_MENUS = {
   8: SIDEBAR_MENU8,
 };
 
-
-
 const ChartSideMenu = () => {
-  // State to manage the active dropdown menu and selection
   const [dropdownState, setDropdownState] = useState({
-    1: { clickCount: 0, isSelected: false, active: false },
-    2: { clickCount: 0, isSelected: false, active: false },
-    3: { clickCount: 0, isSelected: false, active: false },
-    4: { clickCount: 0, isSelected: false, active: false },
-    5: { clickCount: 0, isSelected: false, active: false },
-    6: { clickCount: 0, isSelected: false, active: false },
-    7: { clickCount: 0, isSelected: false, active: false },
-    8: { clickCount: 0, isSelected: false, active: false },
+    1: { isSelected: false, active: false },
+    2: { isSelected: false, active: false },
+    3: { isSelected: false, active: false },
+    4: { isSelected: false, active: false },
+    5: { isSelected: false, active: false },
+    6: { isSelected: false, active: false },
+    7: { isSelected: false, active: false },
+    8: { isSelected: false, active: false },
   });
 
   const dropdownRef = useRef(null);
 
+  // **NEW STATE**: Track which moreright-btn currently has btnON_using
+  // Could be string or number, depending on moreright-btn id (e.g. "7", "7_1", etc)
+  const [activeMorerightId, setActiveMorerightId] = useState(null);
 
+  const [activeDropdownId, setActiveDropdownId] = useState(null);
+  const [activeItemId, setActiveItemId] = useState(null);
 
-  // Function to update the icon and active class of the dropdown toggle button
+  // Fungsi update localStorage & icon class jika perlu (ambil dari asal)
   const updateDropdownIconAndClass = (dropdownId) => {
     const selectedItem = localStorage.getItem(`selectedChartType${dropdownId}`);
     const dropdownButton = document.querySelector(`.dropdown-toggle-btn-${dropdownId}`);
@@ -276,58 +279,32 @@ const ChartSideMenu = () => {
     }
   };
 
-
-  //Tracks which dropdown is currently active
-  const [activeDropdownId, setActiveDropdownId] = useState(null);
-
-
-  // Handles the click event for dropdowns (toggles visibility)
-  const handleDropdownClick = (dropdownId, isTostich = false) => {
+  // Toggle dropdown submenu open/close
+  const handleDropdownClick = (dropdownId) => {
     setDropdownState((prevState) => {
       const newState = {};
-  
       Object.keys(prevState).forEach((key) => {
         const keyNum = parseInt(key);
-        if (keyNum === dropdownId) {
-          // Toggle active for clicked dropdown
-          newState[key] = {
-            ...prevState[key],
-            active: !prevState[key].active,
-          };
-        } else {
-          // Close all other dropdowns
-          newState[key] = {
-            ...prevState[key],
-            active: false,
-          };
-        }
-
-        if (isTostich) {
-            setActiveTostichId(prev => (prev === dropdownId ? null : dropdownId));
-          } else {
-            setActiveDropdownId(prev => (prev === dropdownId ? null : dropdownId));
-            setActiveTostichId(null); // Reset tostich when dropdown is clicked
-          }
-
+        newState[key] = {
+          ...prevState[key],
+          active: keyNum === dropdownId ? !prevState[key].active : false,
+        };
       });
-  
       return newState;
     });
-    
-    // Update active dropdown ID for styling if needed
-    setActiveDropdownId(dropdownId);
-    updateDropdownIconAndClass(dropdownId);
+
+    setActiveDropdownId((prev) => (prev === dropdownId ? null : dropdownId));
+
+    // **Important**: Jangan reset activeMorerightId bila toggle submenu, sebab nak kekalkan btnON_using
+    // Jadi jangan setActiveMorerightId di sini
   };
 
-
-
-
-  // Handles the selection of a chart item within a dropdown
+  // Pilih item submenu
   const handleSelectItem = (dropdownId, item) => {
     localStorage.setItem(`selectedChartType${dropdownId}`, item.id);
+
     setDropdownState((prevState) => {
       const newState = {};
-  
       Object.keys(prevState).forEach((key) => {
         const keyNum = parseInt(key);
         newState[key] = {
@@ -336,22 +313,37 @@ const ChartSideMenu = () => {
           active: false,
         };
       });
-  
       return newState;
     });
-  
-    setActiveDropdownId(dropdownId);
-    updateDropdownIconAndClass(dropdownId);
-    setActiveItemId(item.id);
-  };
-  
 
+    setActiveDropdownId(null); // Tutup dropdown selepas pilih item
+    setActiveItemId(item.id);
+
+    // Kekalkan btnON_using pada moreright-btn dropdownId yang sama
+    setActiveMorerightId(dropdownId.toString());
+  };
+
+  // Klik pada icon tostich (moreright-btn) — tukar btnON_using ke icon yang ditekan
+  const handleTostichClick = (id) => {
+    // Tukar activeMorerightId ke id yang ditekan
+    setActiveMorerightId(id.toString());
+
+    // Tutup semua dropdown kecuali kalau id ini adalah dropdown utama (number)
+    if (!id.toString().includes("_")) {
+      // Kalau klik moreright-btn utama (dropdown)
+      setActiveDropdownId((prev) => (prev === Number(id) ? null : Number(id)));
+    } else {
+      // Kalau klik ikon sub (contoh: "7_1", "7_2"), jangan ubah dropdown state
+    }
+  };
+
+  // Klik luar dropdown — tutup semua dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownState((prevState) =>
           Object.keys(prevState).reduce((acc, key) => {
-            acc[key] = { ...prevState[key], active: false }; // Tutup dropdown
+            acc[key] = { ...prevState[key], active: false };
             return acc;
           }, {})
         );
@@ -362,94 +354,71 @@ const ChartSideMenu = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
-
-
-  const [activeItemId, setActiveItemId] = useState(null);
- const [activeTostichId, setActiveTostichId] = useState(null);
-
-
-const handleToStichClick = (id) => {
-  setActiveTostichId(prev => prev === id ? null : id);
-};
-
-
   return (
-    <>
+    <div className="chart_container_">
+      {/* chart area */}
+      <div className="fixChart_SideChart border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] ">
+        <div className="bn-flex justify-content-center mx-1 coinchart flex-column">
+          <div id="CoinChartContainer" className="w-full aspect-[16/9]">
+            <div>{/* Place your chart here */}</div>
+          </div>
+        </div>
+      </div>
 
-    <div className='chart_container_'>
-
-
-       {/* chart area */}
-        <div className="fixChart_SideChart border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] ">
-                <div className="bn-flex justify-content-center mx-1 coinchart flex-column">
-                   <div id="CoinChartContainer" className="w-full aspect-[16/9]">
-                        <div>
-                           {/* Place your chart here */}
-                        </div>
-                    </div>
-              </div>         
-        </div> 
-
-
-
-        {/* side menu area */}
-        <div className="fixChart_SideMenu border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] "  ref={dropdownRef} >
+      {/* side menu area */}
+      <div
+        className="fixChart_SideMenu border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px]"
+        ref={dropdownRef}
+      >
         <div className="d-grid grid-cols-[auto_min-content] align-items-start h-full">
           <div className="d-flex align-items-center relative mr-[24px]">
-
-
             <div className="d-flex flex-row items-center h-full w-full gap-[--space-m] [&::-webkit-scrollbar]:hidden">
               <div className="d-flex align-items-center gap-[--space-m]">
                 <div className="!ml-[0px]">
                   <div className="bn-flex">
-                  <div className="bn-flex justify-content-center mx-1 icondrop_menu flex-column">
+                    <div className="bn-flex justify-content-center mx-1 icondrop_menu flex-column">
                       {Object.keys(SIDEBAR_MENUS).map((dropdownId) => {
                         const menuSections = SIDEBAR_MENUS[dropdownId];
-                        // const isSelected = dropdownState[dropdownId]?.isSelected;
                         const isActive = dropdownState[dropdownId]?.active;
                         const selectedItem = localStorage.getItem(`selectedChartType${dropdownId}`);
-                        
 
                         return (
                           <React.Fragment key={dropdownId}>
                             <DropdownButton
-                            align={{lg: 'end'}}
-                            drop="end"
-                            variant=""
+                              align={{ lg: "end" }}
+                              drop="end"
+                              variant=""
                               as={ButtonGroup}
                               title={
                                 <>
-                                      <span
-                                        className={`font-i-side trade_icon tostich ${activeTostichId === dropdownId ? "btnON_using" : ""} ${
-                                          menuSections
-                                            .flatMap((s) => s.items)
-                                            .find((item) => item.id.toString() === selectedItem)?.iconClass ||
-                                          menuSections[0].items[0].iconClass
-                                        }`}
-
-                                        onClick={() => handleToStichClick(dropdownId)}
-                                      />
-                                      <span
-                                      className="font-i-side-xs trade_icon tradeicon-ticon_182 too_gle_sidesubmenu arrow_image"  // Toggle submenu only when clicking this
-                                      onClick={() => handleDropdownClick(parseInt(dropdownId))} 
-                                      />
-                                
-                                  </>
-                               }
-                              className={`dropdown-toggle-btn-${dropdownId} moreright-btn bn-flex justify-content-between ${activeDropdownId === parseInt(dropdownId) ? "isselected btnON_using" : ""} ${activeTostichId === dropdownId ? "btnON_using" : ""}`}
-
-                               show={isActive}
-                              // onClick={() => handleDropdownClick(parseInt(dropdownId))}
-                            
-                                onClick={(e) => {
-                                e.stopPropagation(); // Stop click events here so clicking the icon DOES NOT toggle submenu                       
-                                // Remove btnON_using from all elements
-                                document.querySelectorAll(".btnON_using").forEach((el) => el.classList.remove("btnON_using"));
-                      
-                              }} 
+                                  <span
+                                    className={`font-i-side trade_icon tostich moreright-btn ${
+                                      activeMorerightId === dropdownId.toString() ? "btnON_using" : ""
+                                    } ${
+                                      menuSections
+                                        .flatMap((s) => s.items)
+                                        .find((item) => item.id.toString() === selectedItem)?.iconClass ||
+                                      menuSections[0].items[0].iconClass
+                                    }`}
+                                    onClick={() => handleTostichClick(dropdownId)}
+                                  />
+                                  <span
+                                    className="font-i-side-xs trade_icon tradeicon-ticon_182 too_gle_sidesubmenu arrow_image"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleDropdownClick(parseInt(dropdownId));
+                                      // Jangan reset btnON_using bila toggle submenu, biar kekal
+                                    }}
+                                  />
+                                </>
+                              }
+                              className={`dropdown-toggle-btn-${dropdownId} moreright-btn bn-flex justify-content-between ${
+                                activeDropdownId === parseInt(dropdownId) ? "isselected" : ""
+                              } ${
+                                activeMorerightId === dropdownId.toString() ? "btnON_using" : ""
+                              }`}
+                              show={isActive}
                             >
-
                               {menuSections.map((section) => (
                                 <React.Fragment key={section.section}>
                                   <div className="px-3 py-2 text-muted text-sm dropitem_subsection_title">
@@ -459,12 +428,14 @@ const handleToStichClick = (id) => {
                                     <Dropdown.Item
                                       key={item.id}
                                       onClick={() => handleSelectItem(parseInt(dropdownId), item)}
-                                      active={localStorage.getItem(`selectedChartType${dropdownId}`) === item.id.toString()}
+                                      active={
+                                        localStorage.getItem(`selectedChartType${dropdownId}`) ===
+                                        item.id.toString()
+                                      }
                                       className={
-                                        // Apply "isselected" class only for the currently selected item in the active dropdown
                                         activeDropdownId === dropdownId && activeItemId === item.id
-                                          ? 'isselected'
-                                          : ''
+                                          ? "isselected"
+                                          : ""
                                       }
                                     >
                                       <div className="bn-flex justify-content-between align-items-center">
@@ -479,32 +450,34 @@ const handleToStichClick = (id) => {
                               ))}
                             </DropdownButton>
 
-                            {/* Inserted Divider and Buttons After dropdown Menu 7 */}
+                            {/* Extra buttons for dropdownId === 7 */}
                             {parseInt(dropdownId) === 7 && (
                               <>
                                 <div className="dropdown-divider"></div>
-                                <Button 
-                                  className={`moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton tostich ${activeTostichId === '7_1' ? "btnON_using" : ""}`}
-                                  onClick={() => handleToStichClick('7_1')}
+                                <Button
+                                  className={`moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton tostich ${
+                                    activeMorerightId === "7_1" ? "btnON_using" : ""
+                                  }`}
+                                  onClick={() => handleTostichClick("7_1")}
                                 >
                                   <span className="font-i-side trade_icon tradeicon-ticon_7" />
                                 </Button>
 
-                                <Button 
-                                  className={`moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton tostich ${activeTostichId === '7_2' ? "btnON_using" : ""}`}
-                                  onClick={() => handleToStichClick('7_2')}
+                                <Button
+                                  className={`moreright-btn bn-flex justify-content-between ghostbg nonDropdownButton tostich ${
+                                    activeMorerightId === "7_2" ? "btnON_using" : ""
+                                  }`}
+                                  onClick={() => handleTostichClick("7_2")}
                                 >
                                   <span className="font-i-side trade_icon tradeicon-ticon_8" />
                                 </Button>
                                 <div className="dropdown-divider"></div>
                               </>
                             )}
-
                           </React.Fragment>
                         );
                       })}
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -512,18 +485,7 @@ const handleToStichClick = (id) => {
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
     </div>
-
-
-    </>
   );
 };
 

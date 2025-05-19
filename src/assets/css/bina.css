@@ -5248,3 +5248,8 @@
       grid-template-rows: repeat(5, 1fr);
     }
   }
+
+
+  .fixChart_SideMenu .moreright-btn .dropdown-toggle.btn > .trade_icon {
+    overflow: hidden;
+}
