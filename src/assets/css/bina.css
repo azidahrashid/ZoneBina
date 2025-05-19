@@ -5216,7 +5216,7 @@
 
   }
   
-  @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
     .timechart_wrap .leftarrow,
     .timechart_wrap .rightarrow {
       visibility: visible;
@@ -5250,6 +5250,6 @@
   }
 
 
-  .fixChart_SideMenu .moreright-btn .dropdown-toggle.btn > .trade_icon {
+.fixChart_SideMenu .moreright-btn .dropdown-toggle.btn > .trade_icon {
     overflow: hidden;
 }
