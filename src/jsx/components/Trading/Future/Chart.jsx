@@ -302,8 +302,15 @@ const handleSelectItem = (dropdownId, item) => {
   setActiveDropdownId(null); // Close dropdown after selecting item
   setActiveItemId(item.id);
 
+  if (favouriteSelection && !item.id.toString().includes(favouriteSelection)){
+      setFavouriteSelection(null)
+  }
+
   // Keep btnON_using active on moreright-btn with the same dropdownId
   setActiveMorerightId(dropdownId.toString());
+
+
+
 };
 
 // Click on tostich icon (moreright-btn) — toggle btnON_using on the clicked icon
@@ -318,6 +325,11 @@ const handleTostichClick = (id) => {
   } else {
     // If clicked on sub icon (e.g. "7_1", "7_2"), do not change dropdown state
   }
+
+ if (activeMorerightId !== id.toString()) {
+    setFavouriteSelection(null);
+  }
+
 };
 
 // Click outside dropdown — close all dropdowns
@@ -336,7 +348,45 @@ useEffect(() => {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
+
+
   }, []);
+
+// Separate useEffect for resetting favouriteSelection when dropdownId changes
+useEffect(() => {
+  // Reset favouriteSelection if the activeDropdownId changes
+  if (activeDropdownId !== null) {
+    setFavouriteSelection(null);
+  }
+}, [activeDropdownId]); // Runs whenever activeDropdownId changes
+
+
+  const [favouriteSelection, setFavouriteSelection] = useState(null);
+  const [favourites, setFavourites] = useState([]);
+
+  const toggleFavourite = (item) => {
+    if (favourites.some(fav => fav.id === item.id)) {
+      setFavourites(prev => prev.filter(fav => fav.id !== item.id));
+
+    } else {
+      setFavourites(prev => [...prev, item]);
+
+    }
+  };
+
+
+  const handleFavouriteClick = (item) => {
+    if (activeMorerightId === item.id.toString()) {
+      setFavouriteSelection(null);
+    } else {
+    setFavouriteSelection(item.id);
+    }
+
+    setActiveMorerightId(null); // Clear active icon state
+  };
+
+
+
 
   return (
     <div className="chart_container_">
@@ -348,6 +398,12 @@ useEffect(() => {
           </div>
         </div>
       </div>
+
+
+
+
+
+
 
       {/* side menu area */}
       <div
@@ -365,6 +421,7 @@ useEffect(() => {
                         const menuSections = SIDEBAR_MENUS[dropdownId];
                         const isActive = dropdownState[dropdownId]?.active;
                         const selectedItem = localStorage.getItem(`selectedChartType${dropdownId}`);
+                        
 
                         // detect touch devices and use only one or the other
                         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -434,6 +491,16 @@ useEffect(() => {
                                         <span className={`font-i-side trade_icon d-flextrade_icon ${item.iconClass}`}>
                                           {item.label}
                                         </span>
+
+
+                                        <span
+                                          className={`font-i trade_icon ${favourites.some(fav => fav.id === item.id) ? "tradeicon-ticon_189 bookmarks" : "tradeicon-ticon_0"} tradeicon- star_icon`}
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            toggleFavourite(item);
+                                          }}
+                                        ></span>
+
                                       </div>
                                     </Dropdown.Item>
                                   ))}
@@ -481,6 +548,21 @@ useEffect(() => {
           </div>
         </div>
       </div>
+
+
+      
+        {/* favourites  menu area */}
+        <div className="favourites-leftsidebar d-flex gap-2">
+        {favourites.map((item) => (
+          <span
+          key={item.id}
+          className={`font-i trade_icon ${item.iconClass} d-flex trade_icon cursor-pointer ${
+            favouriteSelection === item.id ? 'btnON_using' : ''
+          }`}
+          onClick={() => handleFavouriteClick(item) }
+          ></span>
+        ))}
+        </div> 
     </div>
   );
 };

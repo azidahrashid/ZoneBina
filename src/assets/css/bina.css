@@ -4020,7 +4020,7 @@
   
   .fixChart_SideMenu {
     display: inline-flex;
-    height: calc(100vh - 10.5rem - 18vh);
+    height: calc(100vh - 10.5rem - 15vh);
     position: absolute;
     z-index: 9;
     border-radius: 0 5px 5px 0;
@@ -4028,6 +4028,9 @@
     border-left: 0;
     border-bottom: 0;
   }
+
+
+
   [data-theme-version="dark"][data-headerbg="color_2"] .fixChart_SideMenu {
     background-color: #181a20;
   }
@@ -4151,7 +4154,9 @@
     .icondrop_menu
     .dropdown-menu
     .dropdown-item:focus,
-  [data-theme-version="dark"][data-primary="color_2"] .favourites-bar .active {
+  [data-theme-version="dark"][data-primary="color_2"] .favourites-bar .active ,
+   [data-theme-version="dark"][data-primary="color_2"] .chart_container_  .favourites-leftsidebar .btnON_using
+  {
     background-color: #1a1e23;
     color: #fff;
   }
@@ -4176,7 +4181,8 @@
     .icondrop_menu
     .dropdown-menu
     .dropdown-item:focus,
-  [data-theme-version="light"][data-primary="color_2"] .favourites-bar .active {
+  [data-theme-version="light"][data-primary="color_2"] .favourites-bar .active ,
+  [data-theme-version="light"][data-primary="color_2"] .chart_container_  .favourites-leftsidebar .btnON_using {
     background-color: #e8e8e8;
     color: #000;
   }
@@ -4217,7 +4223,7 @@
     opacity: 1;
   }
   
-  .favourites-bar .font-i {
+  .favourites-bar .font-i ,   .favourites-leftsidebar .font-i  {
     font-size: 1.6rem;
     padding: 3px;
     border-radius: 5px;
@@ -4241,10 +4247,19 @@
   }
   
   .chart_container_ .fixChart_SideChart #CoinChartContainer>* {
-    height: calc(100vh - 12.125rem - 18vh);
+    height: calc(100vh - 13.125rem - 15vh);
     aspect-ratio: 16/9;
+    width:100%;
   }
-  
+    .chart_container_  .favourites-leftsidebar {
+ 
+    float: right;
+    width: calc(100% - 45px);
+    border-top:2px solid var(--color-Line);
+    padding-top:5px
+ 
+}
+
   @media only screen and (min-width: 48rem) {
     [data-sidebar-style="mini"] .content-body {
       margin-left: 0;
@@ -4585,7 +4600,7 @@
     .future_main_section,
     .future_orderbook_section,
     .future_trade_section {
-      min-height: calc(100vh - 5.125rem - 18vh);
+      min-height: calc(100vh - 5.125rem - 15vh);
     }
   }
   
@@ -4728,7 +4743,7 @@
     .future_orderbook_section,
     .future_trade_section {
       max-height: 521px;
-      overflow: auto;
+      /* overflow: auto; */
     }
   }
   
@@ -5147,7 +5162,7 @@
     }
   
     .chart_container_ .fixChart_SideChart #CoinChartContainer>* {
-        height: calc(80vh - 12.125rem - 18vh);
+        height: calc(80vh - 12.125rem - 15vh);
       }
     
       .future_tradeStatus_section {
@@ -5184,7 +5199,7 @@
         aspect-ratio: 16 / 9;
     }
     .fixChart_SideMenu ,    .chart_container_ .fixChart_SideChart #CoinChartContainer>*  {
-        height:calc(100vh - 343px - 18vh);
+        height:calc(100vh - 343px - 15vh);
         min-height: 492px;
     }
     .future_main_section .card-body {
