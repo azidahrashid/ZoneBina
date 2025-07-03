@@ -4017,7 +4017,14 @@
   .icondrop_menu .dropdown-menu .dropdown-item .font-i:before {
     font-size: 1.5rem;
   }
-  
+  .future_main_section .tab-content {
+    float: left;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+
   .fixChart_SideMenu {
     display: inline-flex;
     height: calc(100vh - 10.5rem - 15vh);
@@ -4223,12 +4230,16 @@
     opacity: 1;
   }
   
-  .favourites-bar .font-i ,   .favourites-leftsidebar .font-i  {
+  .favourites-bar .font-i   {
     font-size: 1.6rem;
     padding: 3px;
     border-radius: 5px;
   }
-  
+  .favourites-leftsidebar .font-i  {
+    font-size: 1.6rem;
+    padding:0 3px;
+    border-radius: 5px;
+  }
   [data-primary="color_2"] .btn-primary.ghostbg {
     --button-bg: transparent;
   }
@@ -4247,18 +4258,49 @@
   }
   
   .chart_container_ .fixChart_SideChart #CoinChartContainer>* {
-    height: calc(100vh - 13.125rem - 15vh);
+  
+      height: calc(100vh - 12.125rem - 18vh);
     aspect-ratio: 16/9;
     width:100%;
   }
-    .chart_container_  .favourites-leftsidebar {
- 
+  .chart_container_.reduce_container_ .fixChart_SideChart #CoinChartContainer>* {
+  height: calc(100vh - 13.125rem - 15vh);
+  }
+
+  .chart_container_  .favourites-leftsidebar {
+    display:none;
     float: right;
-    width: calc(100% - 45px);
-    border-top:2px solid var(--color-Line);
-    padding-top:5px
+    margin:0 10px;
+    margin-bottom: 6px;
+    margin-left: 45px;
+    width: calc(100% - 65px);
+    justify-content: center;
+    align-items: center;
+   
  
 }
+
+.chart_container_ .favourites-leftsidebar.hidebar {
+  display: none !important; 
+}
+.chart_container_ .favourites-leftsidebar .favourites-leftsidebar-wrap {
+
+    padding:5px;
+    border-radius:5px;
+
+}
+
+   [data-theme-version="light"][data-primary="color_2"] .chart_container_  .favourites-leftsidebar .favourites-leftsidebar-wrap{
+     background-color: #ffffff;
+    box-shadow:0 0 6px #868686;
+    border-left:5px solid #fad94e;
+  border-right:5px solid #fad94e}
+   [data-theme-version="dark"][data-primary="color_2"] .chart_container_  .favourites-leftsidebar .favourites-leftsidebar-wrap{
+    background-color: #0c0d10;
+   box-shadow:0 0 6px black;
+  border-left:5px solid #fad94e;
+  border-right:5px solid #fad94e}
+
 
   @media only screen and (min-width: 48rem) {
     [data-sidebar-style="mini"] .content-body {
@@ -4745,6 +4787,9 @@
       max-height: 521px;
       /* overflow: auto; */
     }
+
+
+    
   }
   
   @media only screen and (min-width: 2000px) {

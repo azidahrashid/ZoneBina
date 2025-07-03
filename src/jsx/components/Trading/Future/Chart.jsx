@@ -302,9 +302,17 @@ const handleSelectItem = (dropdownId, item) => {
   setActiveDropdownId(null); // Close dropdown after selecting item
   setActiveItemId(item.id);
 
+
+
   if (favouriteSelection && !item.id.toString().includes(favouriteSelection)){
       setFavouriteSelection(null)
   }
+
+  if (favourites.some(fav => fav.id === item.id)) {
+    return; // Prevent further actions if item is already in favourites
+  }
+
+
 
   // Keep btnON_using active on moreright-btn with the same dropdownId
   setActiveMorerightId(dropdownId.toString());
@@ -312,6 +320,7 @@ const handleSelectItem = (dropdownId, item) => {
 
 
 };
+
 
 // Click on tostich icon (moreright-btn) — toggle btnON_using on the clicked icon
 const handleTostichClick = (id) => {
@@ -331,6 +340,9 @@ const handleTostichClick = (id) => {
   }
 
 };
+
+
+
 
 // Click outside dropdown — close all dropdowns
 useEffect(() => {
@@ -389,7 +401,7 @@ useEffect(() => {
 
 
   return (
-    <div className="chart_container_">
+    <div className={`chart_container_  ${favourites.length > 0 ? 'reduce_container_' : ''}`}>
       {/* chart area */}
       <div className="fixChart_SideChart border-t-[1px]  border-l-0 border-t-0 border-solid border-Line pl-[16px] pr-[16px] ">
         <div className="bn-flex justify-content-center mx-1 coinchart flex-column">
@@ -474,18 +486,16 @@ useEffect(() => {
                                     {section.section}
                                   </div>
                                   {section.items.map((item) => (
+                                    
                                     <Dropdown.Item
-                                      key={item.id}
-                                      onClick={() => handleSelectItem(parseInt(dropdownId), item)}
-                                      active={
-                                        localStorage.getItem(`selectedChartType${dropdownId}`) ===
-                                        item.id.toString()
-                                      }
-                                      className={
-                                        activeDropdownId === dropdownId && activeItemId === item.id
-                                          ? "isselected"
-                                          : ""
-                                      }
+                                          key={item.id}
+                                           onClick={(e) => {
+                                            if (!favourites.some(fav => fav.id === item.id)) {
+                                              handleSelectItem(parseInt(dropdownId), item); // Select the item
+                                            }
+                                          }}
+                                          active={localStorage.getItem(`selectedChartType${dropdownId}`) === item.id.toString()}
+                                          className={activeDropdownId === dropdownId && activeItemId === item.id ? "isselected" : ""}
                                     >
                                       <div className="bn-flex justify-content-between align-items-center">
                                         <span className={`font-i-side trade_icon d-flextrade_icon ${item.iconClass}`}>
@@ -494,7 +504,7 @@ useEffect(() => {
 
 
                                         <span
-                                          className={`font-i trade_icon ${favourites.some(fav => fav.id === item.id) ? "tradeicon-ticon_189 bookmarks" : "tradeicon-ticon_0"} tradeicon- star_icon`}
+                                           className={`font-i trade_icon ${favourites.some(fav => fav.id === item.id) ? "tradeicon-ticon_189 bookmarks" : "tradeicon-ticon_0"} tradeicon- star_icon`}
                                           onClick={(e) => {
                                             e.stopPropagation();
                                             toggleFavourite(item);
@@ -503,6 +513,8 @@ useEffect(() => {
 
                                       </div>
                                     </Dropdown.Item>
+
+                                     
                                   ))}
                                   <div className="dropdown-divider"></div>
                                 </React.Fragment>
@@ -552,7 +564,8 @@ useEffect(() => {
 
       
         {/* favourites  menu area */}
-        <div className="favourites-leftsidebar d-flex gap-2">
+        <div className={`favourites-leftsidebar d-flex gap-2 ${favourites.length > 0 ? '' : 'hidebar'}`}>
+         <div className="d-flex favourites-leftsidebar-wrap">             
         {favourites.map((item) => (
           <span
           key={item.id}
@@ -562,6 +575,7 @@ useEffect(() => {
           onClick={() => handleFavouriteClick(item) }
           ></span>
         ))}
+        </div>
         </div> 
     </div>
   );
