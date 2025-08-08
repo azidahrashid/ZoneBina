@@ -364,7 +364,6 @@ useEffect(() => {
 
   }, []);
 
-// Separate useEffect for resetting favouriteSelection when dropdownId changes
 useEffect(() => {
   // Reset favouriteSelection if the activeDropdownId changes
   if (activeDropdownId !== null) {
